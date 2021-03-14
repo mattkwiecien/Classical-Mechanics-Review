@@ -1,0 +1,109 @@
+\documentclass{article}
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\DeclareMathOperator{\Lagr}{\mathcal{L}}
+\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
+\title{Taylor 7.29}
+\author{Matthew Kwiecien}
+\begin{document}
+
+\maketitle
+
+\section{Problem}
+Figure 7.14 shows a simple pendulum (mass \textit{m}, length \textit{l}) whose point of support \textit{P} is attached to the edge of a wheel (center \textit{O}, radius \textit{R}) that is forced to rotate at a fixed angular velocity $\omega$.  At \textit{t = 0}, the point \textit{P} is level with \textit{O} on the right.  Write down the Lagrangian and find the equation of motion for the angle $\phi$.
+
+\section{Solution}
+
+The first step is to obtain the position of the bob of the pendulum as a function of time.  Once we obtain this position as a function of time, we can differentiate it with respect to time to obtain the velocity, which we can use for the kinetic energy of the system.
+
+First, take the triangle formed by the pendulum with the string length \textit{l} as the hypotenuse.  From geometry we have the $x,y$ position of the bob as 
+
+$$
+x = l\sin\phi \textrm{, } y= -l\cos\phi
+$$
+
+where $y$ is negative because we have taken the point $O$ to be the zero for potential energy.
+
+Now, we need to include the $x,y$ contributions from the rotating disk.  Observe that the angle between the zero state of the system and the current position of the point $P$ is $\omega t$.  Given this, from geometry we have
+
+$$
+x = R\cos\omega t \textrm{, } y = R\sin\omega t
+$$
+
+Combining this with the above, we get the position of the pendulum bob in terms of $\phi$ and $t$ as:
+
+$$
+r(t) = (l\sin\phi + R\cos\omega t) \uvec{x} - (l\cos\phi + R\sin\omega t) \uvec{y}
+$$
+
+Now, we can obtain the potential energy of the system by finding $T=\frac{1}{2}m\dot{\vec{r}}^2$. Differentiating $r(t)$ and squaring, we get
+
+$$
+T = \frac{1}{2}m(\dot{\phi}^2l^2+\omega^2R^2+2\dot{\phi}l\omega R(\sin\phi\cos\omega t- \cos\phi\sin\omega t)
+$$
+
+To simplify we use the identity 
+$$
+\sin x\cos y - \cos x \sin y = \sin(x - y)
+$$
+Thus
+$$
+T = \frac{1}{2}m(\dot{\phi}^2l^2+\omega^2R^2+2\dot{\phi}l\omega R\sin(\phi - \omega t))
+$$
+Now for the potential energy $u = mgy$, we already found $y$ in terms of $\phi$, substituting:
+$$
+U = mgy = mg(-l\cos\phi + R\sin\omega t)
+$$
+
+Now, combining $T$ and $U$ we obtain the Lagrangian, $\Lagr$:
+$$
+\Lagr = \frac{1}{2}m(\dot{\phi}^2l^2+\omega^2R^2+2\dot{\phi}l\omega R\sin(\phi - \omega t)) + mgl\cos\phi - mgR\sin\omega t
+$$
+
+To obtain the equations of motion, we find the function which satisfies the Euler-Lagrange equation
+$$
+\frac{\partial \Lagr}{\partial \phi} = \frac{d}{dt}\frac{\partial \Lagr}{\partial \dot{\phi}}
+$$
+
+For the left hand side we have
+
+$$
+\frac{\partial \Lagr}{\partial \phi} = -mgl\sin\phi + \dot{\phi}ml\omega R\cos(\phi-\omega t)
+$$
+
+and the right hand side:
+
+$$
+\frac{d}{dt}\frac{\partial \Lagr}{\partial \dot{\phi}} = \frac{d}{dt} ml^2 \dot{\phi} + ml\omega R\sin(\phi - \omega t)
+$$
+
+Differentiating, we get
+
+$$
+\frac{d}{dt}\frac{\partial \Lagr}{\partial \dot{\phi}} = ml^2 \ddot{\phi} + \dot{\phi}ml\omega R\cos(\phi - \omega t) -  \omega^2 mlR\cos(\phi - \omega t)
+$$
+
+Setting the two equal, we see
+
+$$
+-mgl\sin\phi + \dot{\phi}ml\omega R\cos(\phi-\omega t) = ml^2 \ddot{\phi} + \dot{\phi}ml\omega R\cos(\phi - \omega t) -  \omega^2 mlR\cos(\phi - \omega t)
+$$
+
+Simplifying and solving for $\ddot{\phi}$ we get
+
+$$
+\ddot{\phi} = -\frac{g}{l}\sin\phi + \frac{\omega^2R}{l}\cos(\phi - \omega t)
+$$
+
+Notice that in the special case of $\oemga = 0$, our equation simplifies to 
+
+$$
+\ddot{\phi} = -\frac{g}{l}\sin\phi
+$$
+
+which is of course, a simple pendulum.
+
+
+
+\end{document}

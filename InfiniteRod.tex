@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
+\title{Taylor 4.24}
+\author{Matthew Kwiecien}
+\begin{document}
+
+\maketitle
+
+\section{Problem}
+An infinitely long, uniform rod of mass $\mu$ per unit length is situated on the \textit{z} axis. (a) Calculate the gravitational force \textbf{F} on a point mass \textit{m} at a distance $\rho$ from the \textit{z} axis.
+
+
+\section{Solution}
+Since the force of gravity for two masses is given by
+$$
+\vec{F} = -\frac{GMm}{r^2}\uvec{r}
+$$
+
+\noindent Let the force of gravity from an infinitesimally small mass $dm$ be given by 
+$$
+\vec{dF} = -\frac{Gmdm}{r^2}\uvec{r}
+$$
+
+\noindent Now, let the infinite rod have the coordinates $(0,0,z)$, and the mass have coordinates $(\rho, 0, 0)$. Take the angle $\theta$ to be the angle between the unit vector $\uvec{r}$ and the xy-plane.  Then, from geometry, we have
+
+$$
+-\uvec{r} = -\cos\theta\hat{\rho} + \sin\theta\uvec{z}
+$$
+(recall that the magnitude of the unit vector $\uvec{r}$ is 1) and
+$$
+|\uvec{r}| = \sqrt{\rho^2 + z^2}
+$$
+Thus, our force from a small mass is
+$$
+\vec{dF} = \frac{Gm dm}{z^2+\rho^2}(-\cos \theta \hat{\rho} + \sin \theta \uvec{z})
+$$
+Now, from the geometry we can see that $\cos \theta = \frac{\rho}{r}$ and $\sin \theta = \frac{z}{r}$, thus
+$$
+\vec{dF} = \frac{Gm dm}{z^2+\rho^2}\left(\frac{-\rho}{\sqrt{z^2 + \rho^2}} \hat{\rho} + \frac{z}{\sqrt{z^2 + \rho^2} }\uvec{z}\right)
+$$
+Now, we want to integrate over the length of the rod to get the total mass that is applying a force to our point.  Using the relation that $\mu = \frac{dm}{dz}$, we have that $dm = \mu dz$, thus
+$$
+\vec{dF} = Gm\mu\left(\frac{-\rho}{(z^2 + \rho^2)^\frac{3}{2}} \hat{\rho} + \frac{z}{(z^2 + \rho^2)^\frac{3}{2}}\uvec{z}\right)dz
+$$
+Now we can integrate this differential from $-\infty$ to $\infty$ to find the total force $\vec{F}$.
+$$
+\vec{F} = \int \vec{dF \cdot \uvec{r}} = \int_{-\infty}^{\infty}\vec{dF_{\rho}} + \int_{-\infty}^{\infty}\vec{dF_{z}}
+$$
+Starting with $\vec{F_{z}}$ we have
+$$
+\vec{F_{z}} = Gm\mu\int_{-\infty}^{\infty}\frac{z}{(z^2 + \rho^2)^\frac{3}{2}}dz
+$$
+which gives
+$$
+\vec{F_{z}} = Gm\mu\left[-\frac{1}{\sqrt{z^2+\rho^2}}\right] \rvert_{-\infty}^{\infty} = 0
+$$
+Thus, the force on the mass in the z-direction is 0.  This makes intuitive sense since the rod is infinitely long - every force in the $+z$ direction is canceled out by an equal and opposite force in the $-z$ direction. 
+\newline
+\newline
+\noindent Now to find $\vec{F_{\rho}}$
+$$
+\vec{F_{\rho}} = -Gm\mu\rho \int_{-\infty}^{\infty} \frac{dz}{(z^2 + \rho^2)^\frac{3}{2}} = -2Gm\mu\rho \int_{0}^{\infty} \frac{dz}{(z^2 + \rho^2)^\frac{3}{2}} 
+$$
+Notice that the function is even - so we can re-write the integral going from 0 to $\infty$. (You can intuitively see this, looking at the contribution in the $\rho$ direction from both z directions.) Evaluating this integral, we get
+$$
+\vec{F_{\rho}} = -2Gm\mu\rho\left[\frac{z}{\rho^2\sqrt{\rho^2 + z^2}}\right]\rvert_{0}^{\infty}
+$$
+Now, factoring out a $\rho$ and factoring a $z$ out of the square root, we get the form
+$$
+\vec{F_{\rho}} = -\frac{2Gm\mu}{\rho}\left[\frac{1}{\sqrt{\frac{\rho^2}{z^2} + 1}}\right]\rvert_{0}^{\infty} = -\frac{2Gm\mu}{\rho}
+$$
+Thus,
+$$
+\vec{F} = -\frac{2Gm\mu}{\rho}\hat{\rho}
+$$
+
+\end{document}
