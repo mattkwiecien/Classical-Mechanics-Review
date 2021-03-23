@@ -4,10 +4,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{physics}
+\usepackage{bm}
 \DeclareMathOperator{\Lagr}{\mathcal{L}}
+\DeclareMathOperator{\Ham}{\mathcal{H}}
 \newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
 \newcommand{\vh}[1]{\hat{\vb{#1}}}
-\title{Taylor 7.29}
+
+\title{Classical Mechanics}
 \author{Matthew Kwiecien}
 \begin{document}
 
@@ -188,4 +191,196 @@ is a good measure of the average response of the oscillator and given by Parseva
 $$
 x_{rms} = \sqrt{A_0^2 + \frac{1}{2}\sum_{n=1}^\infty A_n^2}
 $$
+\section{Calculus of Variations}
+\subsection{Euler-Lagrange Equation}
+An integral of the form
+$$
+S = \int_{x_{1}}^{x_2} f[y(x), y'(x), x]dx
+$$
+taken along a path $y=y(x)$ is stationary with respect to variations of that path if and only if $y(x)$ satisfies the \textbf{Euler-Lagrange equation}
+$$
+\frac{\partial f}{\partial y} - \frac{d}{dx}\frac{\partial f}{\partial y'} = 0
+$$
+For \textit{n} dependent variables, there are \textit{n} equations, e.g.
+$$
+S = \int_{u_{1}}^{u_2} f[x(u), y(u), x'(u), y'(u), u]du
+$$
+is stationary with respect to variations of $x(u)$ and $y(u)$ if and only if these two functions satisfy
+$$
+\frac{\partial f}{\partial x} = \frac{d}{du}\frac{\partial f}{\partial x'}
+$$
+and
+$$
+\frac{\partial f}{\partial y} = \frac{d}{du}\frac{\partial f}{\partial y'}
+$$
+\section{Lagrange's Equations}
+\subsection{The Lagrangian}
+The \textbf{Lagrangian} \Lagr of a conservative system 
+$$ \Lagr = T - U $$
+where \textit{T} and \textit{U} are kinetic and potential energies.
+
+\subsection{Generalized Coordinates}
+The \textit{n} parameters $q_1, \dots, q_n$ are \textbf{generalized coordinates} for an N-particle system if every particle's position $\vb{r}_\alpha$ can be expressed as a function of $q_1, \dots, q_n$ (and time \textit{t}) and vice versa AND $n$ is the smallest number that allows the system to be described in this way.
+
+If $n  < 3N$ in 3 dimensions, the system is said to be \textbf{constrained}.
+
+The coordinates $q_1, \dots, q_n$ are said to be \textbf{natural} if the functional relationships of the $\vb{r}_\alpha$ to $q_1, \dots, q_n$ are independent of time.
+
+The number of \textbf{degrees of freedom} of a system is the number of coordinates that can be independently varied.
+
+If the number of degrees of freedom is equal to the number of generalized coordinates, the system is \textbf{holonomic}.
+
+\subsection{Lagrange's Equations}
+For a holonomic system, Newton's 2nd law is equivalent to the n \textbf{Lagrange Equations}
+
+$$
+\frac{\partial \Lagr}{\partial q_i} = \frac{d}{dt}\frac{\partial \Lagr}{\partial \dot q_i} \qquad [i = 1,\dots,n]
+$$
+
+and the Lagrange equations are in turn equivalent to Hamilton's principle.
+
+\subsection{Generalized Momenta and Ignorable Coordinates}
+The \textit{i}th \textbf{generalized momentum} $p_i$ is defined to be the derivative
+$$
+p_i = \frac{\partial \Lagr}{\partial \dot q_i}
+$$
+If $\partial \Lagr / \partial q_i = 0$, then $q_i$ is \textbf{ignorable} and the generalized momentum is constant.
+
+\subsection{The Hamiltonian}
+The \textbf{Hamiltonian} is defined as 
+$$
+\Ham = \sum_{i=1}^{n} p_i \dot q_i - \Lagr
+$$
+If $\partial \Lagr / \partial t = 0$ Then $\Ham$ is conserved; if the coordinates are natural, $\Ham$ is the energy of the system.
+
+\subsection{Lagrangian for a Charge in an Electromagnetic Field}
+For a charge $q$
+$$
+\Lagr(\vb{r}, \vb{\dot r}, t) = \frac{1}{2} m \vb{\dot r}^2 - q(V - \vb{\dot r} \cdot \vb{A})
+$$
+
+\section{Two-Body Central Force Problem}
+\subsection{Relative Coordinate and Reduced Mass}
+Re-write in terms of \textbf{relative coordinate}
+$$
+\vb{r} = \vb{r_1} - \vb{r_2}
+$$
+and the CM coordinate $\vb{R}$, the 2-body problem is reduced to a problem of two independent particles, a free particle with mass $M = m_1 + m_2$ and position $\vb{R}$, and a particle with mass equal to the \textbf{reduced mass}
+$$
+\mu = \frac{m_1  m_2}{m_1 + m_2}
+$$
+position $\vb{r}$ and potential energy $U(r)$.
+\subsection{The Equivalent One-Dimensional Problem}
+The motion of the relative coordinate, with a given angular momentum $\ell$, is eqivalent to the motion of a particle in one radial dimension, with mass $\mu$, position $r$ (with $0 < r < \infty)$, and \textbf{effective potential energy}
+$$
+U_{eff}(r) = U(r) + U_{cf}(r) = U(r) + \frac{\ell^2}{2\mu r^2}
+$$
+where $U_{cf}$ is called the \textbf{centrifugal potential energy}.
+\subsection{The Transformed Radial Equation}
+Let $u = /r$ and replace $t$ with $\phi$, then we get the equation of the one-dimensional radial motion:
+$$
+u''(\phi) = -u(\phi) - \frac{\mu}{\ell^2 u(\phi)^2} F
+$$
+\subsection{The Kepler Orbits}
+For $F = Gm_1 m_2/r^2 = \gamma/r^2$, the solution to the radial equation is
+$$
+r(\phi) = \frac{c}{1+\epsilon\cos\phi}
+$$
+where $c = \ell^2/\gamma\mu$ and $\epsilon$ is related to the energy by 
+$$
+E = \frac{\gamma^2 \mu}{2 \ell^2}(\epsilon^2 - 1)
+$$
+This \textbf{Kepler Orbit} is an ellipse, parabola, or hyperbola, according as the eccentricity $\epsilon$ is less than, equal to, or greater than 1.
+
+\section{Mechanics in Noninertial Frames}
+\subsection{Inertial Force in an Accelerating but Nonrotating Frame}
+The motion of a body, as seen in a frame that has acceleration $\vb{A}$ relative to an inertial frame, can be found using Newton's second law in the form $ m \ddot{\vb{r}} = \vb{F} + \vb{F}_{inertial}$, where $\vb{F}$ is the net force on the body (as measured in any inertial frame) and $\vb{F}_{inertial}$ is an additional \textbf{inertial force}
+$$
+\vb{F}_{inertial} = -m\vb{A}
+$$
+\subsection{The Angular Velocity Vector}
+For a body rotating about an axis specified by the unit vector $\vb{u}$ at a rate $\omega$, its \textbf{angular velocity vector} is
+$$
+\bm{\omega} = \omega \vb{u}
+$$
+\subsection{``Useful Relation''}
+The velocity of a point $\vb{r}$ fixed in a rigid body that is rotating with angular velocity $\bm{\omega}$ is 
+$$
+\vb{v} = \bm{\omega} \times \vb{r}
+$$
+
+\subsection{Time Derivatives in a Rotating Frame}
+If a frame $\mathcal{S}$ has angular velocity $\bm{\Omega}$ relative to frame $\mathcal{S}_0$, then the time derivatives of a single vector $\vb{Q}$ as seen in the two frames are related by
+
+$$
+\left( \frac{d\vb{Q}}{dt} \right)_{\mathcal{S}_0} = \left( \frac{d\vb{Q}}{dt} \right)_{\mathcal{S}} + \vb{\Omega} \times \vb{Q}
+$$
+
+\subsection{Newton's Second Law in a Rotating Frame}
+If a frame $\mathcal{S}$ has angular velocity $\vb{\Omega}$ relative to an inertial frame $S_{0}$, then Newton's second law in the rotating frame takes the form
+$$
+m\ddot{\vb{r}} = \vb{F} + \vb{F}_{cor} + \vb{F}_{cf}
+$$
+where \textbf{F} is the net force on the body as measured in any inertial frame, and the inertial forces $\vb{F}_{cor}$ and $\vb{F}_{cf}$ are the \textbf{Coriolis} and \textbf{centrifugal forces}
+
+$$
+\vb{F}_{cor} = 2m\dot{\vb{r}} \times \vb{\Omega} \qquad \text{and} \qquad \vb{F}_{cf} = m(\vb{\Omega} \times \vb{r}) \times \vb{\Omega}
+$$
+
+\subsection{Free-Fall Acceleration}
+The observed free-fall acceleration $\vb{g}$ (defined as the initial acceleration, relative to the earth from rest) includes the ``true" gravitational acceleration $\vb{g_0}$ and the effect of the centrifugal force
+$$
+\vb{g} = \vb{g_0} + (\vb{\Omega} \times \vb{R}) \times \vb{\Omega}
+$$
+``Vertical" is defined as the direction of $\vb{g}$ and ``horizontal'' as perpendicular to $\vb{g}$
+\section{Rotational Motion of Rigid Bodies}
+\subsection{CM and Relative Motions}
+$$
+\vb{L} = \vb{L}\text{(motion of CM)} + \vb{L}\text{(motion relative to CM)}
+$$
+and 
+$$
+T = T\text{(motion of CM)} + T\text{(motion relative to CM)}
+$$
+\subsection{The Moment of Inertia Tensor}
+The angular momentum $\vb{L}$ and the angular velocity $\bm\omega$ of a rigid body are related by 
+$$
+\vb{L} = \vb{I}\bm\omega
+$$
+where $\vb{L}$ and $\bm\omega$ must be seen as $3 \times 1$ columns and $\vb{I}$ is the $3\times3$ \textbf{moment of inertia tensor}, whose diagonal and off-diagonal elements are defined as 
+$$
+I_{xx} = \sum_{\alpha} m_{\alpha}(y_{\alpha}^2 + z_{\alpha}^2) \qquad \text{and} \qquad I_{xy} = -\sum_{\alpha} m_{\alpha}x_{\alpha}y_{\alpha}
+$$
+etc.
+\subsection{Principal Axes}
+A \textbf{principal axis} of a body (about a point $O$) is any axis through $O$ with the property that if $\bm\omega$ points along the axis, then $\vb{L}$ is parallel to $\bm\omega$, e.g.
+$$
+\vb{L} = \lambda \bm\omega
+$$
+for some real number $\lambda$.  For any body and any point $O$, there are three perpendicular principal axes through $O$.
+
+With respect to it's principal axes, the inertial tensor has the \textbf{diagonal form}
+
+$$
+\vb{I'} = \begin{bmatrix}
+    \lambda_1 & 0 & 0 \\
+    0 & \lambda_2 & 0 \\
+    0 & 0 & \lambda_3 \\
+  \end{bmatrix}
+$$
+\subsection{Euler's Equations}
+If $\vb{\dot{L}}$ denotes the rate of change of a body's angular momentum as seen in a frame fixed in the body (body frame), then it satisfies \textbf{Euler's equations}
+$$
+\vb{\dot{L}} + \bm \omega \times \vb{L} = \bm \Gamma
+$$
+\subsection{Euler's Angles}
+The orientation of a rigid body can be specified by the three \textbf{Euler Angles} $\theta, \phi, \psi$ 
+
+The Lagrangian for a rigid body spinning about a fixed pivot is
+$$
+\Lagr = \frac{1}{2} \lambda_1 (\dot\phi^2 \sin^2\theta + \dot\theta^2) + \frac{1}{2} \lambda_3(\dot\psi + \dot\phi \cos\theta)^2 - M g R \cos\theta
+$$
+
+\section{Coupled Oscillators and Normal Modes}
+
 \end{document}
