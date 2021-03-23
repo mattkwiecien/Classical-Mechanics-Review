@@ -1,0 +1,191 @@
+\documentclass{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{physics}
+\DeclareMathOperator{\Lagr}{\mathcal{L}}
+\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
+\newcommand{\vh}[1]{\hat{\vb{#1}}}
+\title{Taylor 7.29}
+\author{Matthew Kwiecien}
+\begin{document}
+
+\maketitle
+
+\section{Newton's Laws}
+\subsection{Dots and Cross Products}
+\begin{equation*}
+   \vb{r} \cdot \vb{s} = rs\cos\theta = r_{x}s_{x}+r_{y}s_{y}+r_{z}s_{z}
+\end{equation*}
+\begin{equation*}
+   \vb{r} \times \vb{s} =  (r_{y}s_{z}-r_{z}s_{y})\vh{x} - (r_{x}s_{z}-r_{z}s_{x})\vh{y} + 
+   (r_{x}s_{y}-r_{y}s_{x})\vh{z} = 
+   \det 
+\begin{bmatrix}
+    \vh{x} & \vh{y} & \vh{z} \\
+    r_{x} & r_{y} & r_{z} \\
+    s_{x} & s_{y} & s_{z} \\
+\end{bmatrix}
+\end{equation*}
+
+\subsection{Inertial Frames}
+An inertial frame is any reference frame in which Newton's first law holds.  Thus, a nonaccelerating, nonrotating frame.
+
+\subsection{Newton's Second Law}
+\begin{center}
+\begin{tabular}{cccc}
+     Vector Form & 
+     Cartesian & 
+     2D Polar & 
+     Cylindrical Polar 
+     \\
+     & 
+     $(x,y,z)$ & 
+     $(r,\phi)$ & 
+     $(\rho, \phi, z)$ 
+     \\
+     \hline
+     \\
+     $\vb{F} = m \vb{a}$ & 
+     \begin{aligned}
+     F_{x}  & =m \ddot{x} \\
+     F_{y}  & =m \ddot{y} \\
+     F_{z}  & =m \ddot{z}
+     \end{aligned} & 
+     \begin{aligned}
+     F_{r}  & =m(\ddot{r}-r\dot\phi^2) \\
+     F_{\phi}  & =m(r\ddot{\phi} + 2\dot{r}\dot\phi)
+     \end{aligned} & 
+     \begin{aligned}
+     F_{r}  & =m(\ddot{\rho}-\rho\dot\phi^2) \\
+     F_{\phi}  & =m(\rho\ddot{\phi} + 2\dot{\rho}\dot\phi) \\
+     F_{z} &= m\ddot{z} \\
+     \end{aligned}
+     \\
+\end{tabular}
+\end{center}
+
+\section{Projectiles and Charged Particles}
+\subsection{Linear and Quadratic Drags}
+Provided the speed \textit{v} is well below that of sound, the magnitude of the drag force $\vb{f} = -f(v)\vh{v}$ on an object moving through a fluid
+
+$$
+f(v) = f_{lin} + f_{quad}
+$$
+where
+$$f_{lin} = bv = \beta Dv$$
+$$f_{quad} = cv^2 = \gamma D^2 v^2$$
+
+$D$ is the linear size of the object.  For a sphere, $D$ would be the diameter and $\gamma$, $\beta$ are constants of the fluid.
+
+\subsection{Lorentz Force on a Charged Particle}
+$$
+\vb{F} = q(\vb{E} + \vb{v} \times \vb{B})
+$$
+
+\section{Momentum and Angular Momentum}
+\subsection{Equation of Motion for a Rocket}
+$$
+m\dot{v} = -\dot{m}v_{x} + F^{ext}
+$$
+\subsection{Center of Mass for Several Particles}
+$$
+\vb{R} = \frac{1}{M}\sum_{\alpha=1}^{N} m_{\alpha}\vb{r}_{\alpha} = \frac{m_1 \vb{r}_1 + \dots + m_N \vb{r}_N}{M}
+$$
+where $M = \sum m_{\alpha}$.
+\subsection{Angular Momentum}
+For a particle with position \vb{r} relative to origin $O$ and momentum \vb{p}, the angular momentum about $O$ is
+$$ \vb{\ell} = \vb{r} \times \vb{p} $$
+
+For several particles, total angular momentum is
+$$
+\vb{L} = \sum_{\alpha=1}^{N} \vb{\ell}_{\alpha} = \sum_{\alpha=1}^{N} \vb{r}_{\alpha} \times \vb{p}_{\alpha}
+$$
+And if all internal forces are central
+$$\vb{\dot{L}} = \vb{\Gamma}^{ext}$$
+where $\Gamma^{ext}$ is the net external torque.
+
+\textbf{Principle of Conservation of Angular Momentum} - If the net external torque on an N-particle system is zero, the system's total angular momentum is constant.
+
+\section{Energy}
+\subsection{Work-KE Theorem}
+The change in KE of a particle as it moves from point 1 to 2 is
+$$
+\Delta T \equiv T_{2} - T_{1} = \int_{1}^{2} \vb{F} \cdot d\vb{r} \equiv W(1 \to 2)
+$$
+where $T = \frac{1}{2}mv^2$ and $W$ is the work done by the total force $\vb{F}$ on the particle
+\subsection{Conservative Forces and Potential Energy}
+A force $\vb{F}$ on a paticle is \textbf{conservative} if 
+\begin{enumerate}
+    \item it depends only on the particle's position, $\vb{F} = \vb{F(r)}$
+    \item for any two points 1 and 2, the work $W(1\to2)$ done by \vb{F} is the same for all paths joining 1 and 2 (or equivalently $\nabla \times \vb{F} = 0$).
+\end{enumerate}
+If a force $\vb{F}$ is conservative, we can define a corresponding potential energy, so that
+$$
+U(\vb{r}) = -W(\vb{r}_o \to \vb{r}) \equiv -\int_{\vb{r}_{0}}^{\vb{r}} \vb{F(r')} \cdot d\vb{r'}
+$$
+and
+$$
+\vb{F} = -\nabla U
+$$
+If all forces on a particle are conservative with corresponding potential energies, then the total mechanical energy
+$$
+E = T + U_1 + \dots + U_n
+$$
+is constant.  If there are nonconservative forces, $\Delta E = W_{nc}$, the work done by the nonconservative forces.
+\subsection{Central Forces}
+A force $\vb{F(r)}$ is \textbf{central} if it is everywhere directed toward or away from a ``force center''. If you take the center to be the origin, then
+$$
+\vb{F(r)} = f(\vb{r})\uvec{r}
+$$
+A central force is spherically symmetric 
+$$
+f(\vb{r}) = f(r)
+$$
+If and only if it is conservative.
+\subsection{Energy of a Multi-particle System}
+If all forces on a multiparticle system are conservative, the total potential energy is
+$$
+U = U^{int} + U^{ext} = \sum_\alpha \sum_{\beta > \alpha} U_{\alpha\beta} + \sum_{\alpha}U_{\alpha}^{ext}
+$$
+which satisfies: (net force on particle $\alpha$) $=-\nabla_{\alpha}U$ and $T + U = $ constant.
+
+\section{Oscillations}
+\subsection{Hooke's Law}
+$$F = -kx \iff U = \frac{1}{2}kx^2$$
+\subsection{Simple Harmonic Motion}
+$$
+\ddot{x} = -\omega^2 x \iff x(t) = A\cos(\omega t - \delta), \text{etc.}
+$$
+\subsection{Damped Oscillations}
+If the oscillator is subject to a damping force $-bv$ then,
+$$
+\ddot{x} + 2\beta \dot{x} + \omega_0^2 x = 0 \iff x(t) = Ae^{-\beta t} \cos(\omega_1 t-\delta)
+$$
+where $\beta = 2b/m$, $\omega_0 = \sqrt{k/m}$, $\omega_1 = \sqrt{\omega_0^2 - \beta^2}$, and the solution given here is for weak damping ($\beta < \omega_0$)
+\subsection{Driven Damped Oscillations and Resonance}
+Given a driving force $F(t) = mf__0\cos(\omega t)$, the motion is 
+$$
+x(t) = A\cos(\omega t - \delta)
+$$
+where 
+$$
+A^2 = \frac{f_0^2}{(\omega_0^2 - \omega^2)^2 + 4\beta^2\omega^2}
+$$
+This is a transient solution of the homogenous equation, but dies out as time passes.  The long term solution resonates when $\omega$ is close to $\omega_0$.
+\subsection{Fourier Series}
+Any periodic driving force can be built as a series of sinusoidal terms, and the resultant motion can be given by 
+$$
+x(t) = \sum_{n=0}^\infty A_n\cos(n\omega t - \delta_n)
+$$
+\subsection{RMS Displacement}
+The root mean square displacement 
+$$
+x_{rms} = \sqrt{\frac{1}{\tau} \int_0^\tau x^2 dt}
+$$
+is a good measure of the average response of the oscillator and given by Parseval's theorem as
+$$
+x_{rms} = \sqrt{A_0^2 + \frac{1}{2}\sum_{n=1}^\infty A_n^2}
+$$
+\end{document}
