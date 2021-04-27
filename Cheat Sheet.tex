@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{physics}
 \usepackage{bm}
+\usepackage[medium]{titlesec}
 \DeclareMathOperator{\Lagr}{\mathcal{L}}
 \DeclareMathOperator{\Ham}{\mathcal{H}}
 \newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
@@ -17,7 +18,7 @@
 \maketitle
 
 \section{Newton's Laws}
-\subsection{Dots and Cross Products}
+\subsection*{Dots and Cross Products}
 \begin{equation*}
    \vb{r} \cdot \vb{s} = rs\cos\theta = r_{x}s_{x}+r_{y}s_{y}+r_{z}s_{z}
 \end{equation*}
@@ -32,10 +33,10 @@
 \end{bmatrix}
 \end{equation*}
 
-\subsection{Inertial Frames}
+\subsection*{Inertial Frames}
 An inertial frame is any reference frame in which Newton's first law holds.  Thus, a nonaccelerating, nonrotating frame.
 
-\subsection{Newton's Second Law}
+\subsection*{Newton's Second Law}
 \begin{center}
 \begin{tabular}{cccc}
      Vector Form & 
@@ -70,7 +71,7 @@ An inertial frame is any reference frame in which Newton's first law holds.  Thu
 \end{center}
 
 \section{Projectiles and Charged Particles}
-\subsection{Linear and Quadratic Drags}
+\subsection*{Linear and Quadratic Drags}
 Provided the speed \textit{v} is well below that of sound, the magnitude of the drag force $\vb{f} = -f(v)\vh{v}$ on an object moving through a fluid
 
 $$
@@ -82,22 +83,31 @@ $$f_{quad} = cv^2 = \gamma D^2 v^2$$
 
 $D$ is the linear size of the object.  For a sphere, $D$ would be the diameter and $\gamma$, $\beta$ are constants of the fluid.
 
-\subsection{Lorentz Force on a Charged Particle}
+\subsection*{Lorentz Force on a Charged Particle}
 $$
 \vb{F} = q(\vb{E} + \vb{v} \times \vb{B})
 $$
 
 \section{Momentum and Angular Momentum}
-\subsection{Equation of Motion for a Rocket}
+\subsection*{Equation of Motion for a Rocket}
 $$
 m\dot{v} = -\dot{m}v_{x} + F^{ext}
 $$
-\subsection{Center of Mass for Several Particles}
+\subsection*{Center of Mass for Several Particles}
 $$
 \vb{R} = \frac{1}{M}\sum_{\alpha=1}^{N} m_{\alpha}\vb{r}_{\alpha} = \frac{m_1 \vb{r}_1 + \dots + m_N \vb{r}_N}{M}
 $$
-where $M = \sum m_{\alpha}$.
-\subsection{Angular Momentum}
+where $M = \sum m_{\alpha}$. For a continuous mass distribution
+
+$$
+\vb{R} = \frac{1}{M} = \int \vb{r} dm = \frac{1}{M} \int \varrho \vb{r} dV
+$$
+
+and $dV$ in spherical 
+$$
+\int dV f(\vb{r}) = \int r^2 dr \int \sin\theta d\theta \int d\phi f(r,\theta,\phi)
+$$
+\subsection*{Angular Momentum}
 For a particle with position \vb{r} relative to origin $O$ and momentum \vb{p}, the angular momentum about $O$ is
 $$ \vb{\ell} = \vb{r} \times \vb{p} $$
 
@@ -107,18 +117,21 @@ $$
 $$
 And if all internal forces are central
 $$\vb{\dot{L}} = \vb{\Gamma}^{ext}$$
-where $\Gamma^{ext}$ is the net external torque.
+where $\Gamma^{ext}$ is the net external torque, where torque is
+$$
+\vb{\Gamma} \equiv \vb{\dot{\ell}} = \vb{r} \times \vb{F}
+$$
 
 \textbf{Principle of Conservation of Angular Momentum} - If the net external torque on an N-particle system is zero, the system's total angular momentum is constant.
 
 \section{Energy}
-\subsection{Work-KE Theorem}
+\subsection*{Work-KE Theorem}
 The change in KE of a particle as it moves from point 1 to 2 is
 $$
 \Delta T \equiv T_{2} - T_{1} = \int_{1}^{2} \vb{F} \cdot d\vb{r} \equiv W(1 \to 2)
 $$
 where $T = \frac{1}{2}mv^2$ and $W$ is the work done by the total force $\vb{F}$ on the particle
-\subsection{Conservative Forces and Potential Energy}
+\subsection*{Conservative Forces and Potential Energy}
 A force $\vb{F}$ on a paticle is \textbf{conservative} if 
 \begin{enumerate}
     \item it depends only on the particle's position, $\vb{F} = \vb{F(r)}$
@@ -137,7 +150,7 @@ $$
 E = T + U_1 + \dots + U_n
 $$
 is constant.  If there are nonconservative forces, $\Delta E = W_{nc}$, the work done by the nonconservative forces.
-\subsection{Central Forces}
+\subsection*{Central Forces}
 A force $\vb{F(r)}$ is \textbf{central} if it is everywhere directed toward or away from a ``force center''. If you take the center to be the origin, then
 $$
 \vb{F(r)} = f(\vb{r})\uvec{r}
@@ -147,27 +160,21 @@ $$
 f(\vb{r}) = f(r)
 $$
 If and only if it is conservative.
-\subsection{Energy of a Multi-particle System}
-If all forces on a multiparticle system are conservative, the total potential energy is
-$$
-U = U^{int} + U^{ext} = \sum_\alpha \sum_{\beta > \alpha} U_{\alpha\beta} + \sum_{\alpha}U_{\alpha}^{ext}
-$$
-which satisfies: (net force on particle $\alpha$) $=-\nabla_{\alpha}U$ and $T + U = $ constant.
 
 \section{Oscillations}
-\subsection{Hooke's Law}
+\subsection*{Hooke's Law}
 $$F = -kx \iff U = \frac{1}{2}kx^2$$
-\subsection{Simple Harmonic Motion}
+\subsection*{Simple Harmonic Motion}
 $$
 \ddot{x} = -\omega^2 x \iff x(t) = A\cos(\omega t - \delta), \text{etc.}
 $$
-\subsection{Damped Oscillations}
+\subsection*{Damped Oscillations}
 If the oscillator is subject to a damping force $-bv$ then,
 $$
 \ddot{x} + 2\beta \dot{x} + \omega_0^2 x = 0 \iff x(t) = Ae^{-\beta t} \cos(\omega_1 t-\delta)
 $$
 where $\beta = 2b/m$, $\omega_0 = \sqrt{k/m}$, $\omega_1 = \sqrt{\omega_0^2 - \beta^2}$, and the solution given here is for weak damping ($\beta < \omega_0$)
-\subsection{Driven Damped Oscillations and Resonance}
+\subsection*{Driven Damped Oscillations and Resonance}
 Given a driving force $F(t) = mf__0\cos(\omega t)$, the motion is 
 $$
 x(t) = A\cos(\omega t - \delta)
@@ -177,12 +184,12 @@ $$
 A^2 = \frac{f_0^2}{(\omega_0^2 - \omega^2)^2 + 4\beta^2\omega^2}
 $$
 This is a transient solution of the homogenous equation, but dies out as time passes.  The long term solution resonates when $\omega$ is close to $\omega_0$.
-\subsection{Fourier Series}
+\subsection*{Fourier Series}
 Any periodic driving force can be built as a series of sinusoidal terms, and the resultant motion can be given by 
 $$
 x(t) = \sum_{n=0}^\infty A_n\cos(n\omega t - \delta_n)
 $$
-\subsection{RMS Displacement}
+\subsection*{RMS Displacement}
 The root mean square displacement 
 $$
 x_{rms} = \sqrt{\frac{1}{\tau} \int_0^\tau x^2 dt}
@@ -192,7 +199,7 @@ $$
 x_{rms} = \sqrt{A_0^2 + \frac{1}{2}\sum_{n=1}^\infty A_n^2}
 $$
 \section{Calculus of Variations}
-\subsection{Euler-Lagrange Equation}
+\subsection*{Euler-Lagrange Equation}
 An integral of the form
 $$
 S = \int_{x_{1}}^{x_2} f[y(x), y'(x), x]dx
@@ -214,12 +221,12 @@ $$
 \frac{\partial f}{\partial y} = \frac{d}{du}\frac{\partial f}{\partial y'}
 $$
 \section{Lagrange's Equations}
-\subsection{The Lagrangian}
-The \textbf{Lagrangian} \Lagr of a conservative system 
+\subsection*{The Lagrangian}
+The \textbf{Lagrangian} $\Lagr$ of a conservative system 
 $$ \Lagr = T - U $$
 where \textit{T} and \textit{U} are kinetic and potential energies.
 
-\subsection{Generalized Coordinates}
+\subsection*{Generalized Coordinates}
 The \textit{n} parameters $q_1, \dots, q_n$ are \textbf{generalized coordinates} for an N-particle system if every particle's position $\vb{r}_\alpha$ can be expressed as a function of $q_1, \dots, q_n$ (and time \textit{t}) and vice versa AND $n$ is the smallest number that allows the system to be described in this way.
 
 If $n  < 3N$ in 3 dimensions, the system is said to be \textbf{constrained}.
@@ -230,7 +237,7 @@ The number of \textbf{degrees of freedom} of a system is the number of coordinat
 
 If the number of degrees of freedom is equal to the number of generalized coordinates, the system is \textbf{holonomic}.
 
-\subsection{Lagrange's Equations}
+\subsection*{Lagrange's Equations}
 For a holonomic system, Newton's 2nd law is equivalent to the n \textbf{Lagrange Equations}
 
 $$
@@ -239,84 +246,121 @@ $$
 
 and the Lagrange equations are in turn equivalent to Hamilton's principle.
 
-\subsection{Generalized Momenta and Ignorable Coordinates}
+\subsection*{Generalized Momenta and Ignorable Coordinates}
 The \textit{i}th \textbf{generalized momentum} $p_i$ is defined to be the derivative
 $$
 p_i = \frac{\partial \Lagr}{\partial \dot q_i}
 $$
 If $\partial \Lagr / \partial q_i = 0$, then $q_i$ is \textbf{ignorable} and the generalized momentum is constant.
 
-\subsection{The Hamiltonian}
+\subsection*{The Hamiltonian}
 The \textbf{Hamiltonian} is defined as 
 $$
 \Ham = \sum_{i=1}^{n} p_i \dot q_i - \Lagr
 $$
 If $\partial \Lagr / \partial t = 0$ Then $\Ham$ is conserved; if the coordinates are natural, $\Ham$ is the energy of the system.
 
-\subsection{Lagrangian for a Charge in an Electromagnetic Field}
+\subsection*{Lagrangian for a Charge in an Electromagnetic Field}
 For a charge $q$
 $$
 \Lagr(\vb{r}, \vb{\dot r}, t) = \frac{1}{2} m \vb{\dot r}^2 - q(V - \vb{\dot r} \cdot \vb{A})
 $$
 
 \section{Two-Body Central Force Problem}
-\subsection{Relative Coordinate and Reduced Mass}
+\subsection*{Relative Coordinate and Reduced Mass}
 Re-write in terms of \textbf{relative coordinate}
 $$
 \vb{r} = \vb{r_1} - \vb{r_2}
 $$
-and the CM coordinate $\vb{R}$, the 2-body problem is reduced to a problem of two independent particles, a free particle with mass $M = m_1 + m_2$ and position $\vb{R}$, and a particle with mass equal to the \textbf{reduced mass}
+and the CM coordinate $\vb{R}$
+$$
+\vb{R} = \frac{m_1 \vb{r_1} + m_2 \vb{r_2}}{M}
+$$
+where $M = m_1 + m_2$, thus
+$$
+\vb{r_1} = \vb{R} + \frac{m_2}{M}\vb{r} \qquad \vb{r_2} = \vb{R} - \frac{m_1}{M}\vb{r}
+$$
+or if the origin is the CM coordinate then $\vb{R} = 0$, then
+$$
+\vb{r_1}  = \frac{m_2}{M}\vb{r} \qquad \vb{r_2} = -\frac{m_1}{M}\vb{r}
+$$
+and the 2-body problem is reduced to a problem of two independent particles, a free particle with mass $M = m_1 + m_2$ and position $\vb{R}$, and a particle with mass equal to the \textbf{reduced mass}
 $$
 \mu = \frac{m_1  m_2}{m_1 + m_2}
 $$
 position $\vb{r}$ and potential energy $U(r)$.
-\subsection{The Equivalent One-Dimensional Problem}
+
+Then, the Lagrangian can be written as
+$$
+\Lagr = \Lagr_{CM} + \Lagr_{Rel} = \frac{1}{2}M\dot{\vb{R}}^2 + \left( \frac{1}{2}\mu \dot{\vb{r}}^2 - U(\vb{r})\right)
+$$
+
+To obtain $U(\vb{r})$ you must use the $\vb{r_1}$, $\vb{r_2}$ relations above (these were used to derive the kinetic energy formulation).
+
+
+\subsection*{The Equivalent One-Dimensional Problem}
 The motion of the relative coordinate, with a given angular momentum $\ell$, is eqivalent to the motion of a particle in one radial dimension, with mass $\mu$, position $r$ (with $0 < r < \infty)$, and \textbf{effective potential energy}
 $$
 U_{eff}(r) = U(r) + U_{cf}(r) = U(r) + \frac{\ell^2}{2\mu r^2}
 $$
 where $U_{cf}$ is called the \textbf{centrifugal potential energy}.
-\subsection{The Transformed Radial Equation}
-Let $u = /r$ and replace $t$ with $\phi$, then we get the equation of the one-dimensional radial motion:
+\subsection*{The Transformed Radial Equation}
+Let $u = 1/r$ and replace $t$ with $\phi$, then we get the equation of the one-dimensional radial motion:
 $$
 u''(\phi) = -u(\phi) - \frac{\mu}{\ell^2 u(\phi)^2} F
 $$
-\subsection{The Kepler Orbits}
+\subsection*{The Kepler Orbits}
 For $F = Gm_1 m_2/r^2 = \gamma/r^2$, the solution to the radial equation is
 $$
 r(\phi) = \frac{c}{1+\epsilon\cos\phi}
 $$
-where $c = \ell^2/\gamma\mu$ and $\epsilon$ is related to the energy by 
+from here you can see the min/max radius, and where $c = \ell^2/\gamma\mu$ and $\epsilon$ is related to the energy by 
 $$
 E = \frac{\gamma^2 \mu}{2 \ell^2}(\epsilon^2 - 1)
 $$
+
+Equation of an ellipse:
+$$
+\frac{(x-c)^2}{a^2} + \frac{y^2}{b^2} = 1
+$$
+
+\textbf{Perigee} is $r_{min}$ \textbf{Apogee} is $r_{max}$, and since 
+$$
+\frac{r_{min}}{r_{max}} = \frac{1-\epsilon}{1+\epsilon}
+$$
+
+Period of orbit $\tau$:
+$$
+\tau^2 = \frac{4\pi^2}{GM} a^3
+$$
+
 This \textbf{Kepler Orbit} is an ellipse, parabola, or hyperbola, according as the eccentricity $\epsilon$ is less than, equal to, or greater than 1.
 
 \section{Mechanics in Noninertial Frames}
-\subsection{Inertial Force in an Accelerating but Nonrotating Frame}
+\subsection*{Inertial Force in an Accelerating but Nonrotating Frame}
 The motion of a body, as seen in a frame that has acceleration $\vb{A}$ relative to an inertial frame, can be found using Newton's second law in the form $ m \ddot{\vb{r}} = \vb{F} + \vb{F}_{inertial}$, where $\vb{F}$ is the net force on the body (as measured in any inertial frame) and $\vb{F}_{inertial}$ is an additional \textbf{inertial force}
 $$
 \vb{F}_{inertial} = -m\vb{A}
 $$
-\subsection{The Angular Velocity Vector}
+\subsection*{The Angular Velocity Vector}
 For a body rotating about an axis specified by the unit vector $\vb{u}$ at a rate $\omega$, its \textbf{angular velocity vector} is
 $$
 \bm{\omega} = \omega \vb{u}
 $$
-\subsection{``Useful Relation''}
+\subsection*{``Useful Relation''}
 The velocity of a point $\vb{r}$ fixed in a rigid body that is rotating with angular velocity $\bm{\omega}$ is 
 $$
 \vb{v} = \bm{\omega} \times \vb{r}
 $$
 
-\subsection{Time Derivatives in a Rotating Frame}
+\subsection*{Time Derivatives in a Rotating Frame}
 If a frame $\mathcal{S}$ has angular velocity $\bm{\Omega}$ relative to frame $\mathcal{S}_0$, then the time derivatives of a single vector $\vb{Q}$ as seen in the two frames are related by
 
 $$
 \left( \frac{d\vb{Q}}{dt} \right)_{\mathcal{S}_0} = \left( \frac{d\vb{Q}}{dt} \right)_{\mathcal{S}} + \vb{\Omega} \times \vb{Q}
 $$
 
-\subsection{Newton's Second Law in a Rotating Frame}
+\subsection*{Newton's Second Law in a Rotating Frame}
 If a frame $\mathcal{S}$ has angular velocity $\vb{\Omega}$ relative to an inertial frame $S_{0}$, then Newton's second law in the rotating frame takes the form
 $$
 m\ddot{\vb{r}} = \vb{F} + \vb{F}_{cor} + \vb{F}_{cf}
@@ -327,14 +371,14 @@ $$
 \vb{F}_{cor} = 2m\dot{\vb{r}} \times \vb{\Omega} \qquad \text{and} \qquad \vb{F}_{cf} = m(\vb{\Omega} \times \vb{r}) \times \vb{\Omega}
 $$
 
-\subsection{Free-Fall Acceleration}
+\subsection*{Free-Fall Acceleration}
 The observed free-fall acceleration $\vb{g}$ (defined as the initial acceleration, relative to the earth from rest) includes the ``true" gravitational acceleration $\vb{g_0}$ and the effect of the centrifugal force
 $$
 \vb{g} = \vb{g_0} + (\vb{\Omega} \times \vb{R}) \times \vb{\Omega}
 $$
 ``Vertical" is defined as the direction of $\vb{g}$ and ``horizontal'' as perpendicular to $\vb{g}$
 \section{Rotational Motion of Rigid Bodies}
-\subsection{CM and Relative Motions}
+\subsection*{CM and Relative Motions}
 $$
 \vb{L} = \vb{L}\text{(motion of CM)} + \vb{L}\text{(motion relative to CM)}
 $$
@@ -342,8 +386,17 @@ and
 $$
 T = T\text{(motion of CM)} + T\text{(motion relative to CM)}
 $$
-\subsection{The Moment of Inertia Tensor}
+\subsection*{The Moment of Inertia Tensor}
 The angular momentum $\vb{L}$ and the angular velocity $\bm\omega$ of a rigid body are related by 
+$$
+\vb{I} = 
+\begin{bmatrix}
+    I_{xx} & I_{xy} & I_{xz}\\
+    I_{yx} & I_{yy} & I_{yz}\\
+    I_{zx} & I_{zy} & I_{zz}\\
+\end{bmatrix}
+$$
+
 $$
 \vb{L} = \vb{I}\bm\omega
 $$
@@ -352,7 +405,30 @@ $$
 I_{xx} = \sum_{\alpha} m_{\alpha}(y_{\alpha}^2 + z_{\alpha}^2) \qquad \text{and} \qquad I_{xy} = -\sum_{\alpha} m_{\alpha}x_{\alpha}y_{\alpha}
 $$
 etc.
-\subsection{Principal Axes}
+
+In integral form
+$$
+I_{xx} = \int_V dV \varrho \rho^2
+$$
+More compactly, we have
+
+$$
+I_{ij} = \int \varrho (r^2 \delta_{ij} - r_i r_j) dV
+$$
+
+Now, if you get the moment of inertia tensor relative to the center of mass, you can find the moment of inertia tensor about a point P displaced from the center of mass by $(a,b,c)$ using the relation
+
+$$
+I_{xx} = I_{xx}^{cm} + M(b^2 + c^2) \qquad I_{xy} = I_{xy}^{cm} - M(ab)
+$$
+
+Where $\rho^2$ is the distance from the axis of rotation, and $dV$ in spherical 
+$$
+\int dV = \int r^2 dr \int \sin\theta d\theta \int d\phi
+$$
+
+
+\subsection*{Principal Axes}
 A \textbf{principal axis} of a body (about a point $O$) is any axis through $O$ with the property that if $\bm\omega$ points along the axis, then $\vb{L}$ is parallel to $\bm\omega$, e.g.
 $$
 \vb{L} = \lambda \bm\omega
@@ -368,12 +444,12 @@ $$
     0 & 0 & \lambda_3 \\
   \end{bmatrix}
 $$
-\subsection{Euler's Equations}
+\subsection*{Euler's Equations}
 If $\vb{\dot{L}}$ denotes the rate of change of a body's angular momentum as seen in a frame fixed in the body (body frame), then it satisfies \textbf{Euler's equations}
 $$
 \vb{\dot{L}} + \bm \omega \times \vb{L} = \bm \Gamma
 $$
-\subsection{Euler's Angles}
+\subsection*{Euler's Angles}
 The orientation of a rigid body can be specified by the three \textbf{Euler Angles} $\theta, \phi, \psi$ 
 
 The Lagrangian for a rigid body spinning about a fixed pivot is
