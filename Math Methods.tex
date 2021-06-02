@@ -19,10 +19,10 @@
 \subsection{Single Variable Functions}
 For a function $f(x)$
 \begin{align*}
-    f'(a) = 0 & \implies  a \text{ is a min/max/saddle} \\
-    f''(a) < 0 & \implies a \text{ is a max} \\
-    f''(a) > 0 & \implies  a \text{ is a min} \\
-    f''(a) = 0 & \implies  \text{ cannot be determined} \\
+	f'(a) = 0  & \implies  a \text{ is a min/max/saddle} \\
+	f''(a) < 0 & \implies a \text{ is a max}             \\
+	f''(a) > 0 & \implies  a \text{ is a min}            \\
+	f''(a) = 0 & \implies  \text{ cannot be determined}  \\
 \end{align*}
 \subsection{Multi Variable Functions}
 For a function $f(x,y)$
@@ -33,8 +33,8 @@ Now, let $H = \det \vb{H}$, where $\vb{H}$ is the Hessian Matrix
 $$
 \vb{H} = 
 \begin{bmatrix}
-f_{xx} & f_{xy} \\
-f_{xy} & f_{yy}
+	f_{xx} & f_{xy} \\
+	f_{xy} & f_{yy} 
 \end{bmatrix}
 $$
 so that
@@ -43,11 +43,11 @@ H(x_0, y_0) = \det \vb{H(x_0, y_0)} = f_{xx}(x_0, y_0)f_{yy}(x_0, y_0) - f_{xy}(
 $$
 Then
 \begin{align*}
-    H(x_0, y_0) & = 0 \implies  (x_0, y_0) \text{ cannot be determined} \\
-    H(x_0, y_0) & < 0 \implies (x_0, y_0) \text{ is a saddle point} \\
-    H(x_0, y_0) & > 0 \implies  (x_0, y_0) \text{ is a min/max} \\
-    & f_{xx}(x_0, y_0) > 0  \implies (x_0, y_0) \text{ is a min} \\
-    & f_{xx}(x_0, y_0) < 0  \implies (x_0, y_0) \text{ is a max}
+	H(x_0, y_0) & = 0 \implies  (x_0, y_0) \text{ cannot be determined}      \\
+	H(x_0, y_0) & < 0 \implies (x_0, y_0) \text{ is a saddle point}          \\
+	H(x_0, y_0) & > 0 \implies  (x_0, y_0) \text{ is a min/max}              \\
+	            & f_{xx}(x_0, y_0) > 0  \implies (x_0, y_0) \text{ is a min} \\
+	            & f_{xx}(x_0, y_0) < 0  \implies (x_0, y_0) \text{ is a max} 
 \end{align*}
 
 \section{Residue Calculus}
@@ -72,20 +72,21 @@ $$
 
 Some useful things to remember about Residues:
 \begin{itemize}
-    \item Contours follow the right hand rule (hand swings inward towards the area in the contour.)
-    \item For integrals only involving $\theta$, just use the unit circle 
-    $$
-    z = e^{i\theta}, \quad dz = izd\theta, \quad \cos\theta = \frac{z + \frac{1}{z}}{2}, \quad \sin\theta = \frac{z - \frac{1}{z}}{2}
-    $$
-    \item For functions with only imaginary roots, use a semi-circle in the complex plane, with $z = Re^{i\theta}$
-    \item If there's no complex numbers in your integral, you can substitute $e^{iz}$ for sine or cosine, and take the real/imaginary part of your answer.
-    \item When you choose a contour and a branch, you MUST stay within that branch.  Meaning, if you are integrating from $0$ to $2\pi$, you can't use negative angles.  
-    \item When using a branch cut (like the pacman contour), generally, break it up into
-    $$
-    \oint f(z) = \int_{\Psi_1} f(z) + \int_{C_R} f(z) + \int_{Psi_{2}} f(z) + \int_{C_r} f(z)
-    $$
-    and take the limit as $R \to \infty$, $r \to 0$, which makes the contour integrals go to 0. From there, remember that for $\Psi_1,\quad \theta = 0$, and $\Psi_{2}, \quad \theta = 2\pi$.  Then use residue theorem to get $f(z)$, set it equal to the remaining 2 integrals, and solve for your original integral.
-    
+	\item Contours follow the right hand rule (hand swings inward towards the area in the contour.)
+	\item For integrals only involving $\theta$, just use the unit circle 
+	      $$
+	      z = e^{i\theta}, \quad dz = izd\theta, \quad \cos\theta = \frac{z + \frac{1}{z}}{2}, \quad \sin\theta = \frac{z - \frac{1}{z}}{2}
+	      $$
+	\item "Domain of convergence" basically where there are no poles.
+	\item For functions with only imaginary roots, use a semi-circle in the complex plane, with $z = Re^{i\theta}$
+	\item If there's no complex numbers in your integral, you can substitute $e^{iz}$ for sine or cosine, and take the real/imaginary part of your answer.
+	\item When you choose a contour and a branch, you MUST stay within that branch.  Meaning, if you are integrating from $0$ to $2\pi$, you can't use negative angles.  
+	\item When using a branch cut (like the pacman contour), generally, break it up into
+	      $$
+	      \oint f(z) = \int_{\Psi_1} f(z) + \int_{C_R} f(z) + \int_{\Psi_{2}} f(z) + \int_{C_r} f(z)
+	      $$
+	      and take the limit as $R \to \infty$, $r \to 0$, which makes the contour integrals go to 0. From there, remember that for $\Psi_1,\quad \theta = 0$, and $\Psi_{2}, \quad \theta = 2\pi$.  Then use residue theorem to get $f(z)$, set it equal to the remaining 2 integrals, and solve for your original integral.
+	          
 \end{itemize}
 
 
@@ -126,32 +127,32 @@ $$
 To raise the a matrix to a power, you need to first diagonalize it. To Diagonalize a matrix $\vb{A}$:
 
 \begin{enumerate}
-    \item First, find the eigenvalues by solving for $\lambda$: ($\det(\vb{A}-\lambda \vb{I})$)
-    \item Use the eigenvalues to find the eigenvectors for each eigenvalue.  This usually means solve for x using
-    $$
-    (\vb{A} - \lambda \vb{I})\vb{x} = 0 \qquad \text{or} \qquad \vb{A}\vb{x} = \lambda \vb{x}
-    $$
-    \item Construct the matrix $\vb{\Lambda}$ which is a diagonal matrix with the eigenvalues down the diagonal.
-    $$
-    \vb{\Lambda} = 
-        \begin{bmatrix}
-        \lambda_1 & 0 \\
-        0 & \lambda_2
-        \end{bmatrix}
-    $$
-    \item Construct the matrix $\vb{S}$ which each COLUMN of $\vb{S}$ is an eigenvector of $\vb{A}$.
-    $$
-    \vb{S} = 
-        \begin{bmatrix}
-        \vb{u_1} &
-        \vb{u_2}
-        \end{bmatrix}
-    $$
-    \item Find the inverse of $\vb{S}$, $\vb{S^{-1}}$
-    \item Then you have
-    $$
-    \vb{A} = \vb{S}\vb{\Lambda}{\vb{S^{-1}}}
-    $$
+	\item First, find the eigenvalues by solving for $\lambda$: ($\det(\vb{A}-\lambda \vb{I})$)
+	\item Use the eigenvalues to find the eigenvectors for each eigenvalue.  This usually means solve for x using
+	      $$
+	      (\vb{A} - \lambda \vb{I})\vb{x} = 0 \qquad \text{or} \qquad \vb{A}\vb{x} = \lambda \vb{x}
+	      $$
+	\item Construct the matrix $\vb{\Lambda}$ which is a diagonal matrix with the eigenvalues down the diagonal.
+	      $$
+	      \vb{\Lambda} = 
+	      \begin{bmatrix}
+	      	\lambda_1 & 0         \\
+	      	0         & \lambda_2 
+	      \end{bmatrix}
+	      $$
+	\item Construct the matrix $\vb{S}$ which each COLUMN of $\vb{S}$ is an eigenvector of $\vb{A}$.
+	      $$
+	      \vb{S} = 
+	      \begin{bmatrix}
+	      	\vb{u_1} &   
+	      	\vb{u_2}
+	      \end{bmatrix}
+	      $$
+	\item Find the inverse of $\vb{S}$, $\vb{S^{-1}}$
+	\item Then you have
+	      $$
+	      \vb{A} = \vb{S}\vb{\Lambda}{\vb{S^{-1}}}
+	      $$
 \end{enumerate}
 
 Once a matrix has been diagonalized, you can raise find the n-th power of a matrix using the diagonalized formula
@@ -163,14 +164,14 @@ $$
 For a 2x2 matrix $\vb{A}$, it is simply
 $$
 \begin{bmatrix}
-a & b \\
-c & d
+	a & b \\
+	c & d 
 \end{bmatrix}^{-1}
- = 
- \frac{1}{\det(\vb{A})}
+= 
+\frac{1}{\det(\vb{A})}
 \begin{bmatrix}
-d & -b \\
--c & a
+	d  & -b \\
+	-c & a  
 \end{bmatrix}
 $$
 where the determinant is simply $ad-bc$. 
@@ -178,18 +179,260 @@ where the determinant is simply $ad-bc$.
 For larger matrices, you need to use Gauss-Jordan method.  This uses row operations to go from $[\vb{A} | \vb{I}]$ to $[\vb{I} | \vb{A}^{-1}]$. Start with
 $$
 \begin{bmatrix}
-a & b & c & 1 & 0 & 0 \\
-d & e & f & 0 & 1 & 0 \\
-g & h & i & 0 & 0 & 1 \\
+	a & b & c & 1 & 0 & 0 \\
+	d & e & f & 0 & 1 & 0 \\
+	g & h & i & 0 & 0 & 1 \\
 \end{bmatrix}
 $$
 and row reduce until you end up with 
 $$
 \begin{bmatrix}
-1 & 0 & 0 & j & k & l \\
-0 & 1 & 0 & m & n & o \\
-0 & 0 & 1 & p & q & r \\
+	1 & 0 & 0 & j & k & l \\
+	0 & 1 & 0 & m & n & o \\
+	0 & 0 & 1 & p & q & r \\
 \end{bmatrix}
 $$
 And the matrix on the right will be your inverse
+\section{Ordinary Differential Equations}
+\subsection{Systems of linear differential equations}
+Given 
+$$
+\frac{d\vb{u}}{dt} = A \vb{u}
+$$
+is \textbf{linear with constant coefficients}, then these differential equations will convert directly to linear algebra, with solution 
+$$
+e^{\lambda t} \vb{x} \quad \text{when} \quad A\vb{x} = \lambda \vb{x}
+$$
+
+To solve this system:
+\begin{enumerate}
+	\item Find eigenvalues and eigenvectors as normal (see above).  Note that this requires $A$ to be diagonizable
+	\item Form independent solutions from the $n$ eigenvectors + eigenvalues, e.g.
+	      $$
+	      \vb{u_n}(t) = e^{\lambda_n t}\vb{x_n}
+	      $$
+	\item Create a linear combination of the above solutions and add constants.
+	      $$
+	      \vb{u}(t) = C_1 e^{\lambda_1 t}\vb{x_1} + C_2 e^{\lambda_2 t}\vb{x_2} + \dots
+	      $$
+	\item Solve for the constants given the initial conditions.  This is usually when $t = 0$, which results in $e^{0} = 1$, and simple algebra to solve for the constants.
+	\item Lastly, substitute the coefficients back into the general solution for the solution given that initial state.
+	\item \textbf{NOTE} If you have a repeated eigenvalue (and therefore 1 eigenvector), use $te^{\lambda t} \vb{x}$ as your other solution.
+\end{enumerate}
+
+\section{Partial Differential Equations}
+\subsection{Workflow}
+If the PDE has time involved
+\begin{enumerate}
+	\item Separate the variables (e.g. $u(x,t)$ becomes $X(x)T(t)$)
+	\item Use a constant of proportionality to create multiple ODEs 
+	\item Consider the cases of your constant being $= 0$, $> 0$, $< 0$
+	\item For each case, apply the boundary conditions and solve for $X(x)$ and $T(t)$
+	\item Solve for the normal modes $u_n(x,t)$
+	\item Assemble the general solution using two particular solutions obtained from the constant of proportionality. $u(x,t) = \sum_{n} u_n (x,t)$
+	\item Incorporate the initial conditions at $t=0$, and find the Fourier Coefficients for your solution. $A_n = \dots$, $B_n = \dots$
+\end{enumerate}
+
+For a time independent, linear, homogeneous PDE.
+\begin{enumerate}
+	\item Separate the variables (e.g. $u(x,y)$ becomes $X(x)Y(y)$)
+	\item Use a constant of proportionality to create multiple ODEs 
+	\item Consider the cases of your constant being $= 0$, $> 0$, $< 0$
+	\item For each case, apply the boundary conditions and solve for $X(x)$ and $Y(y)$
+	\item Solve for the normal modes $u_n(\vec{r})$
+	\item Assemble the general solution using two particular solutions obtained from the constant of proportionality. $u(\vec{r}) = \sum_{n} u_n (\vec{r})$
+	\item Fit boundary conditions, and find the Fourier Coefficients for your solution. $A_n = \dots$, $B_n = \dots$
+\end{enumerate}
+\subsection{Fourier Series}
+The Fourier Series is given by 
+$$
+f(x) = a_0 + \sum_{n=1}^{\infty} a_n \cos\frac{n\pi x}{L} + b_n \sin\frac{n\pi x}{L} 
+$$
+
+To find the Fourier Coefficients for a function, and therefore for a general solution (usually the initial condition $f(x)$), we have
+
+$$
+a_0 = \frac{1}{2L} \int_{-L}^{L} f(x) dx
+\qquad
+a_n = \frac{1}{L} \int_{-L}^{L} f(x) \cos\frac{n\pi x}{L} dx
+\qquad
+b_n = \frac{1}{L} \int_{-L}^{L} f(x) \sin\frac{n \pi x}{L} dx
+$$
+
+(Note $a_0$ is the average value).
+\begin{itemize}
+	\item If $f(x)$ is even, you can drop all the $b_n$ terms
+	\item If $f(x)$ is odd, you can drop $a_0$, $a_n$ terms
+\end{itemize}
+
+\subsection{Fourier Transform}
+
+This is the fourier series of an infinite domain.  Using Euler's formula, we get the transform and inverse transform:
+
+$$
+F(k) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} f(x) e^{-ikx}dx 
+\qquad
+f(x) = \frac{1}{\sqrt{2\pi}} \int_{-\infty}^{\infty} F(k) e^{ikx}dk
+$$
+
+\section{Laplacian}
+In cartesian coordinates
+$$
+\nabla \cdot \nabla = \nabla^2 = \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}
+$$
+
+In cylindrical polar:
+
+$$
+\nabla \cdot \nabla = \nabla^2 = \frac{1}{\rho}\frac{\partial}{\partial \rho}\left( \rho\frac{\partial}{\partial\rho}\right) + \frac{1}{\rho^2}\frac{\partial^2}{\partial \theta^2} + \frac{\partial^2}{\partial z^2}
+$$
+
+In spherical polar:
+
+$$
+\nabla \cdot \nabla = \nabla^2 =
+\frac{1}{r^2}\frac{\partial}{\partial r}\left( r^2 \frac{\partial}{\partial r} \right) + \frac{1}{r^2 \sin \theta}\frac{\partial}{\partial \theta} \left( \sin \theta \frac{\partial}{\partial \theta} \right) + \frac{1}{r^2 \sin^2 \theta} \frac{\partial^2}the{\partial \phi^2}
+$$
+
+\section{Probability}
+\subsection{General probabilities}
+\begin{itemize}
+    \item The probability of two independent outcomes both occurring is the product of their
+    probabilities
+	\item The number of outcomes favorable to an event divided by the total number of outcomes.
+	\item (Sample space) Probability is the sum of the probabilities associated with all the sample points favorable to the event
+	\item $P(AB) = P(A) \cdot P_A(B)$ - The probability of A and B is the probability of A times the probability of B given A.
+	\item $P(A+B) = P(A) + P(B) - P(AB)$ - Probability of either A or B or BOTH
+	\item \textbf{Bayes' Formula} $P_A(B) = \frac{P(AB)}{P(A)}$
+\end{itemize}
+
+\subsection{Poisson Distribution}
+If we are counting events that occur \textbf{independently} and \textbf{randomly} then $X$, the number of events in a fixed unit of time (or distance, area, volume), has the \textbf{Poisson Distribution}
+$$
+P(X=x) = \frac{\lambda^x e^{-\lambda}}{x!}
+$$
+
+The Poisson distribution tends to skew right.
+
+\subsection{Binomial Distribution}
+If there are $n$ independent trials, and each trial can either be true or false, and the probability of any trial is \textbf{constant}, then $X$ is the number of successes in the $n$ trials, given by
+
+$$
+P(X=x) = P(x) = \binom{n}{x} p^x (1-p)^{n-x}
+$$
+where 
+$$
+\binom{n}{x} = \frac{n!}{x!(n-x)!}
+$$
+
+Basically if you can reduce the distribution to either a success or a failure on any given trial, its a binomial distribution.
+
+The formula can be thought of as the possible orderings times the probability of one specific ordering of success and failure
+
+
+
+\subsection{Mean and Standard Deviation}
+Mean or average value, 
+$$
+\Bar{x} = \sum_i  x_i p_i = \sum_i x_i f(x_i) 
+$$
+Where $p_i$ is the probability of the ith value.  For a continuous system
+$$
+\Bar{x} = \int_{-\infty}^{\infty} x f(x) dx
+$$
+is the average for a variable $x$
+
+The variance is given by 
+$$
+\text{Var}(x) = \sum_{i}(x_i - \Bar{x})^2 f(x_i) = \int_{-\infty}^{\infty} (x-\Bar{x})^2 f(x) dx
+$$
+With standard deviation
+$$
+\sigma_x = \sqrt{\text{Var}(x)}
+$$
+The cumulative distribution function represents the probability that $x \leq x_i$ and is given by 
+$$
+F(x_i) = \sum_{x_j\leq x_i} f(x_{j}) = \int_{-\infty}^{x_i} f(x) dx
+$$
+
+\section{Fundamentals}
+\textbf{Geometric Series:}
+$$
+b + bu + bu^2 + bu^3  + \dots = \sum_{k=0}^{\infty}bu^k
+$$
+which converges to $b/(1-u)$ if $\abs{u} < 1$, diverges if $\abs{u} \geq 1$
+
+\textbf{Power Series}
+$$
+\sum_{n=0}^{\infty} c_n(x-a)^n = c_0 + c_1(x-a) + c_2(x-a)^2 + \dots
+$$
+
+\textbf{Taylor Series}:
+A power series whose coefficients are derivatives of the function representing the sum
+$$
+\sum_{k=0}^{\infty} \frac{f^{(k)}(a)}{k!} (x-a)^{k}
+$$
+
+\textbf{Ratio Test}:
+
+If the ratio of consecutive terms of a series satisfies 
+$$
+\abs{\frac{_{n+1}}{a_n}} \to 1-\frac{p}{n}
+$$
+The series converges if $p<1$
+
+\subsection{Calculations}
+Integration by parts
+$$
+\int fg' dx = fg-\int f' g dx
+$$
+
+A function is \textbf{even}
+$$
+f(x) = f(-x)
+$$
+and \textbf{odd} if
+$$
+f(x) = -f(-x)
+$$
+Therefore, $\sin(x)$  is clearly odd, and $\cos(x)$ is even.
+\subsection{Approximations}
+Small angle approximations ($\theta \approx 0$)
+$$
+\sin(\theta) \approx \theta
+$$
+
+\subsection{Series Expansions}
+Maclauren (e.g. Taylor at a = 0)
+$$
+e^{x} = 1 + \frac{x}{1!} + \frac{x^2}{2!} + \dots = \sum_{n=0}^{\infty} \frac{x^n}{n!}
+$$
+$$
+(1+x)^\alpha = 1 + \frac{\alpha(\alpha - 1) \dots (\alpha - n + 1)}{n!}x^{n}
+$$
+
+\section{TODO}
+\begin{itemize}
+	\item Poisson Distribution
+	\item Gaussian Distribution
+	\item Laurent Series
+	\item Beta, Gamme functions
+	\item Geometric Series
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}

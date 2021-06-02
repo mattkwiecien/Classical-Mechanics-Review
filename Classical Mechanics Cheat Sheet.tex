@@ -459,4 +459,103 @@ $$
 
 \section{Coupled Oscillators and Normal Modes}
 
+\section{Hamiltonian Mechanics}
+Let $q$ be a generalized coordinate and $p = \partial \Lagr / \partial q$ be the generalized momentum.  Then the Hamiltonian is
+
+$$\Ham = \Ham(q,p,t) = \sum_{i=1}^{n} p_i \dot{q_i} - \Lagr $$
+
+and
+
+$$
+\dot{q_i} = \frac{\partial \Ham}{\partial p_i} \qquad \dot{p_i} = - \frac{\partial \Ham}{\partial q_i} 
+$$
+
+If the generalized coordinates are independent of time $t$, then the Hamiltonian $\Ham$ is just the total energy $T + V$
+
+\section{Collision and Scattering}
+
+\section{Special Relativity}
+
+\textbf{Inertial Frame}: Any reference frame (e.g. system of coordinates and time) in which all the laws of physics hold in their usual form.
+
+\textbf{First Postulate of Relativity:} If $S$ is an inertial frame and if a second frame $S^'$ moves with constant velocity relative to $S$, then $S'$ is also an inertial frame.
+
+\textbf{Second Postulate of Relativity:} The speed of light in vacuum has the same value $c$ in every direction in all inertial frames.
+
+Everything basically comes from the above.
+\subsection{Time Dilation}
+For two events observed in frame $\mathcal{S}_0$, separated by time $\Delta t_0$, the time between them in frame $\mathcal{S}$ is
+$$
+\Delta t = \gamma \Delta t_0
+$$
+where
+$$
+\gamma = \frac{1}{\sqrt{1-\beta^2}}, \qquad \beta = \frac{V}{c}
+$$
+and $V$ is the speed of $\mathcal{S}$ relative to $\mathcal{S}_0$.
+
+\subsection{Length Contraction}
+For a body with rest length $l_0$, a frame $\mathcal{S}$ traveling with velocity $V$ in the direction of the length is 
+$$
+l = \frac{l_0}{\gamma}
+$$
+Note that lengths perpendicular to the velocity are unchanged.
+
+\subsection{Lorentz Transformations}
+
+Events measured in two frames are related by 
+
+$$
+x' = \Lambda x
+$$
+where 
+$$
+\Lambda = \begin{bmatrix}
+    \gamma & 0 & 0 & -\gamma \beta \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 1 & 0 \\
+    -\gamma \beta & 0 & 0 & \gamma \\
+  \end{bmatrix}
+$$
+which gives 
+\begin{align*}
+    x'_1 = & \gamma x_1 - \gamma \beta x_4 \\
+    x'_2 = & x_2 \\
+    x'_3 = & x_3 \\
+    x'_4 = & -\gamma \beta x_1 + \gamma x_4 
+\end{align*}
+for a four vector $$x = (x_1, x_2, x_3, x_4) = (\vb{x}, ct)$$ To obtain the inverse transform, exchange prime and unprimed variables and change the sign of $B$.  
+
+\subsection{Scalar Product}
+The scalar product of a four-vector is given by 
+$$
+x \cdot y = x_1 y_1 + x_2 y_2  + x_3 y_3  - x_4 y_4 
+$$
+and is invariant under all Lorentz transformations.
+
+\subsection{Doppler Effect}
+Light from a source traveling with velocity $V$ relative to frame $S$ is observed at an angle $\theta$, the angle between the velocity and the ray of light. For a rest frame frequency $\omega_0$, the frequency observed in frame $\mathcal{s}$ is
+$$
+\omega = \frac{\omega_0}{\gamma ( 1-\beta \cos \theta)}
+$$
+
+\subsection{Mass, Four-Velocity, Momentum, Energy}
+\begin{itemize}
+    \item The \textbf{invariant mass} is defined as it's \textbf{rest mass}
+    \item The \textbf{four-velocity} is $u = \frac{dx}{dt_0} = \gamma ( \vb{v}, c)$
+    \item the \textbf{four-momentum} is
+    $p = mu = (\gamma m \vb{v}, \gamma m c) = (\vb{p}, E/c)$
+    \item The \textbf{three-force} and \textbf{four-force} are given by $\vb{F} = d\vb{p}/dt$ and $K = dp/dt_0$
+\end{itemize}
+
+Re-arranging the above, we have 
+
+$$
+\beta = \frac{\vb{p}c}{E}, \quad p \cdot p = -(mc)^2, \quad E^2 = (mc^2)^2 + (\vb{p}c)^2
+$$
+
+\subsection{Massless Particles}
+Obviously, when $m = 0$, from the above we have
+$E = |\vb{p}c|, \quad v = c, \quad p^2 = 0$
+
 \end{document}
