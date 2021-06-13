@@ -393,6 +393,64 @@ Important to remember that \textbf{both the radial and angular parts of the wave
 
 
 \section{Harmonic Oscillator}
+For the harmonic oscillator, we have a potential $V(x) = \frac{1}{2} kx^2$.  Substituting $k = m \omega^2$, we get the Hamiltonian in operator form as
+$$
+H = \frac{\hat{p}^2}{2m} + \frac{1}{2}m\omega^2 \hat{x}^2
+$$
+
+And substituting the operators, we get the differential equation 
+
+$$
+-\frac{\hbar^2}{2m} \frac{d^2 \Phi_E(x)}{dx^2} + \frac{1}{2}m\omega^2 x^2 \Phi_E(x) = E \Phi_E(x)
+$$
+
+To solve this, define the \textbf{raising and lowering operators}
+
+$$
+a = \sqrt{\frac{m\omega}{2\hbar}} \left( \hat{x} + i \frac{\hat{p}}{m\omega}\right), \qquad a^\dag = \sqrt{\frac{m\omega}{2\hbar}} \left( \hat{x} - i \frac{\hat{p}}{m\omega}\right), \qquad [a, a^\dag] = 1
+$$
+
+And write the Hamiltonian as 
+$$
+H = \hbar \omega \left( a^\dag a + \frac{1}{2}\right)
+$$
+
+which leads to the solution
+$$
+E_n = \hbar \omega \left( n + \frac{1}{2} \right)
+$$
+
+for quantum number $n$
+
+$$
+H\ket{n} = E_n \ket{n} = \left(n+\frac{1}{2}\right) \hbar \omega \ket{n}
+$$
+
+\subsection{Position space representation}
+Starting with the ground state, $\ket{0} = 0$, and using the raising operator you can generalize to find that 
+$$
+\ket{n} = \frac{1}{\sqrt{n!}}(a^\dag)^n \ket{0}
+$$
+which in spatial basis is 
+$$
+\Phi_n(x) = \frac{1}{\sqrt{n!}} \left[ \sqrt{\frac{m\omega}{2\hbar}} \left(x - \frac{\hbar}{m\omega} \frac{d}{dx} \right) \right]^n \Phi_0(x)
+$$
+
+and can be written in the \textbf{Hermite polynomials}
+$$
+\xi = \sqrt{\frac{m\omega}{\hbar}} x \quad \to \quad  \Phi_0(x) = \left( \frac{m\omega}{\phi \hbar}\right)^{1/4} e^{-\xi^2 /2}
+$$
+and 
+$$
+\Phi_n(x) = \left( \frac{m\omega}{\phi \hbar}\right)^{1/4} \frac{1}{\sqrt{2^n n!}} H_n(\xi)e^{-\xi^2/2}
+$$
+
+\subsection{Momentum space representation}
+Starting with the ground state and using raising operators like the above, you can find the result in terms of the Hermite Polynomials
+
+$$
+\Phi_n(p) = \left( \frac{1}{\phi m \omega \hbar} \right)^{1/4} \frac{1}{\sqrt{2^n n!}} H_n\left( \frac{p}{\sqrt{m\omega\hbar}} \right) e^{-p^2/2m\omega\hbar}
+$$
 
 
 \section{Postulates of Quantum Mechanics}
