@@ -1,0 +1,305 @@
+\documentclass{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{braket}
+\usepackage{bm}
+\DeclareMathOperator{\Lagr}{\mathcal{L}}
+\DeclareMathOperator{\Ham}{\mathcal{H}}
+\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
+\newcommand{\vh}[1]{\hat{\vb{#1}}}
+
+\title{Quantum Mechanics Review}
+\author{Matthew Kwiecien}
+\begin{document}
+
+\maketitle
+\section{Basics}
+\subsection{Ket Operations}
+Expectation value is given by
+$$
+  \braket{A} = \bra{\Psi} A \ket{\Psi} = \sum_n a_n  P_{a_n}
+$$
+With uncertainty
+$$
+  \Delta A = \sqrt{\braket{A^2} - \braket{A}^2 }
+$$
+
+A commutator of two operators is defined as
+$$
+  [A,B] = AB - BA
+$$
+If two operators commute, then the value is 0, and they share common eigenstates.  This means we can measure two observables simultaneously.
+
+\subsection{Braket vs Wave Function}
+\begin{enumerate}
+  \item Ket to Wave Function $\ket{\Psi} \to \Psi(x)$
+  \item Bra to Wave Function Complex Conjugate $\bra{\Psi} \to \Psi^*(x)$
+  \item Inner product to integral over all space $\braket{|} \to \int_{-\infty}^{\infty} dx$
+  \item Operator to position representation of operator $\hat{A} \to A(x)$
+\end{enumerate}
+
+\subsection{Wave Function}
+The wave function is the representation of the quantum state in position space
+
+$$
+  \Psi(x) = \braket{x | \Psi}
+$$
+
+It has probability density
+
+$$
+  \mathcal{P}(x) = |\Psi(x)|^2 \qquad \mathcal{P}_{a<x<b} = \int_{a}^{b}|\Psi(x)|^2
+$$
+and normalization condition
+$$
+  1 = \braket{\Psi | \Psi} = \int_{-\infty}^{\infty} |\Psi(x)|^2 dx = 1
+$$
+
+\subsection{Useful Relations}
+Momentum and wavelength:
+$$ p = \frac{h}{\lambda}, \qquad \lambda_{de Broglie} = \frac{h}{p} $$
+
+Uncertainty principle:
+$$
+[\hat{x},\hat{p}] = i\hbar , \qquad \Delta x \Delta p \geq \frac{\hbar}{2}
+$$
+
+
+\section{Schrodinger's Equation}
+The time evolution of  a quantum system is governed by
+$$
+  i \hbar \frac{d}{dt} \ket{\Psi(t)} = H(t) \ket{\Psi(t)}
+$$
+Where $H$ is the Hamiltonian, a Hermitian operator.
+
+\textbf{The eigenvalues are the allowed energies, and the eigenstates are the allowed energy eigenstates of the system.}
+
+\subsection{Time-independent Hamiltonian}
+If the Hamiltonian and Potential do not depend on time, the Schrodinger equation reduces to
+$$
+  \hat{H}\ket{E_i} = E_i\ket{E_i}
+$$
+
+
+Given a Hamiltonian \textit{H} and an initial state $\ket{\Psi(0)}$, what is the probability that the eigenvalue $a_j$ of the observable $A$ is measured at time $t$?
+
+\begin{enumerate}
+  \item Diagonalize $H$ (find eigenvalues $E_n$ and eigenvectors $\ket{E_n}$
+  \item Write $\ket{\Psi(0)}$ in terms of the energy eigenstates $\ket{E_n}$
+  \item Multiply each eigenstate coefficient by $e^{-i E_n t / \hbar}$ to get $\ket{\Psi(t)}$
+  \item Calculate the probability $P_{a_j} = |\braket{a_j | \Psi(t)}|^2$
+\end{enumerate}
+
+For a time-independent Hamiltonian, the solution takes the form
+$$
+  \hat{H}\ket{E_i} = E_i \ket{E_i}
+$$
+$$
+  \ket{\Psi(t)} = \sum_n c_n e^{-iE_n t/\hbar}\ket{E_n}
+$$
+
+\subsection{Time-dependent Hamiltonian}
+Given a Hamiltonian \textit{H} and an initial state $\ket{\Psi(0)}$, what is the probability that the eigenvalue $a_j$ of the observable $A$ is measured at time $t$?
+
+\begin{enumerate}
+  \item Diagonalize $H$ (find eigenvalues $E_n$ and eigenvectors $\ket{E_n}$
+  \item Write $\ket{\Psi(0)}$ in terms of the energy eigenstates $\ket{E_n}$
+  \item Multiply each eigenstate coefficient by $e^{-i E_n t / \hbar}$ to get $\ket{\Psi(t)}$
+  \item Calculate the probability $P_{a_j} = |\braket{a_j | \Psi(t)}|^2$
+\end{enumerate}
+
+\section{Particle in a Box}
+
+Now, for a classical particle, the Hamiltonian is time-independent
+$$
+  \hat{H} = \frac{\hat{p}^2}{2m} + V(x)
+$$
+
+So use the time-independent Hamiltonian to find the equations of motion.  Choose the position representation and represent our states by wave functions
+$$
+  \ket{E_i} \doteq \Phi_{E_i}(x)
+$$
+and operators
+$$
+  \hat{x} \doteq x \qquad
+  \hat{p} \doteq -i\hbar \frac{d}{dx}
+$$
+
+We then get the differential equation
+
+\begin{align*}
+  \hat{H} \Phi_{E_i}(x)                                                             & =  E_i \Phi_{E_i}(x) \\
+  \left(\frac{\hat{p}^2}{2m} + V(x)\right)\Phi_{E_i}(x)                             & =  E_i \Phi_{E_i}(x) \\
+  \left(\frac{1}{2m} \left( -i\hbar\frac{d}{dx}\right)^2 + V(x)\right)\Phi_{E_i}(x) & =  E_i \Phi_{E_i}(x) \\
+  \left(-\frac{\hbar^2}{2m} \frac{d^2}{dx^2} + V(x)\right)\Phi_{E}(x)               & =  E \Phi_{E}(x)     \\
+\end{align*}
+
+Now, solve the differential equation for the energy eigenstates $\Phi_n(x)$ and the energy eigenvectors $E_n$.
+
+Eliminate the constants using the boundary conditions
+\begin{enumerate}
+  \item $\Phi_E(x)$ is continuous at boundaries
+  \item $\frac{d\Phi_E(x)}{dx}$ is continuous at boundaries unless $V = \infty$
+  \item The total probability density can only be 1.
+\end{enumerate}
+
+\subsection{Infinite Square Well}
+The allowed energies are
+$$
+  E_{n} = \frac{n^2 \pi^2 \hbar^2}{2mL^2}, \qquad n = 1,2,3, \dots
+$$
+with allowed energy eigenstates
+$$
+  \Phi_n(x) = \sqrt{\frac{2}{L}} \sin\frac{n\pix}{L}, \qquad n = 1,2,3, \dots
+$$
+
+\subsection{Finite Square Well (Particle in a box)}
+The qualitative features of the energy eigenstate solutions are 
+\begin{enumerate}
+    \item Oscillatory wave solution inside well
+    \item Wavelength proportional to $1/\sqrt{E - V(x)}$
+    \item Exponentially decaying solution outside well
+    \item Decay length proportional to $1/\frac{V(x) - E}$
+    \item Amplitude inside well related to wavelength
+    \item Match $\Phi_E(x)$ and $d\Phi_E(x)/dx$ at boundaries
+\end{enumerate}
+
+\section{Unbound states}
+Momentum eigenstates are 
+$$
+\ket{p} \doteq \Phi_p(x) = \frac{1}{\sqrt{2\pi\hbar}} e^{i p x / \hbar}
+$$
+Since it's a free particle, $V(x) = 0$, and the momentum eigenstates are also energy eigenstates with energy $E = \frac{p^2}{2m}$, with wavelength given by the de Broglie relation.
+
+The wave packet is given by the superposition of momentum eigenstates
+
+$$
+\Psi(x) = \frac{1}{\sqrt{2\pi\hbar}} \int_{-\infty}^{\infty} \phi(p) e^{i p x / \hbar} dp
+$$
+which is a Fourier transform.  Conversely we can get the momentum amplitudes through the inverse transform
+
+$$
+\phi(p) = \frac{1}{\sqrt{2\pi\hbar}} \int_{-\infty}^{\infty} \Psi(x) e^{-i p x / \hbar} dx
+$$
+
+\section{Hydrogen Atom}
+To solve the hydrogen atom
+\begin{itemize}
+    \item Start with the Hamiltonian of the system
+    \item Reduce the 2-body problem to a 1-body problem using center of mass and relative position
+    \item Use separation of variables to solve the 3 dimensional equation in terms of $r,\theta,\phi$
+    \item Recombine the separated solutions into 1 solution
+\end{itemize}
+
+\subsection{Reducing to a 1-body problem}
+Convert the Hamiltonian
+$$
+H_{sys} = H_{CM} + H_{rel} = \frac{\vb{P}^2}{2M} + \frac{\vb{p}_{rel}^{2}}{2\mu} + V(r)
+$$ 
+and assume the state can be separated as well 
+$$
+\Psi_{sys}(\vb{R},\vb{r}) = \Psi_{CM}(\vb{R}) \Psi_{rel}(\vb{r})
+$$
+so 
+$$
+H_{sys}\Psi_{sys}(\vb{R},\vb{r}) = E_{sys}\Psi_{sys}(\vb{R}, \vb{r})
+$$
+becomes
+$$
+H_{CM}\Psi_{CM}(\vb{R}) = \frac{\vb{P}^2}{2M} \Psi_{CM}(R) = E_{CM} \Psi_{CM}(\vb{R})
+$$
+and 
+$$
+H_{rel}\Psi_{rel}(\vb{r}) = \left( \frac{\vb{p}_{rel}^2}{2\mu} + V(\vb{r}) \right) \Psi_{rel}(\vb{r}) = E_{rel}\Psi_{rel}(\vb{r})
+$$
+
+The center of mass solution is just the free particle solution, and only contributes an overall phase to the solution, which doesn't affect probabilities, and can be ignored.  Thus, we are only concerned with the relative motion in the hydrogen atom.
+
+Converting the Hamiltonian to the position representation
+$$
+H \doteq - \frac{\hbar^2}{2\mu} \nabla^2 + V(r)
+$$
+we get the differential equation
+$$
+\left( -\frac{\hbar^2}{2\mu} \nabla^2 + V(r) \right) \Psi(\vb{r}) = E \Psi(\vb{r})
+$$
+Now you can use whatever coordinate system (spherical usually) and use separation of variables technique to find the solutions.
+
+\subsection{Separation of variables}
+Represent the above differential equation in spherical coordinates, substitute in the position representation of the $\vb{L}^2$ operator, and let $\Psi_(r,\theta,\phi) = R(r) Y(\theta,\phi)$
+to get 
+$$
+-\frac{\hbar^2}{2\mu} \left[ Y\frac{1}{r^2} \frac{d}{dr}\left(r^2\frac{dR}{dr} \right) - \frac{1}{\hbar^2 r^2} R(\vb{L}^2Y \right] + V(r)RY = ERY
+$$
+and use the separation constant to get the solutions in terms of each variable as usual.
+
+\subsection{Motion of a particle on a Ring}
+Using separation of variables on the angular solution, you get the azimuthal solution
+$$
+\ket{m} \doteq \Phi_m(\phi) = \frac{1}{\sqrt{2\pi}}e^{im\phi}
+$$
+
+\subsection{Motion of a particle on a Sphere}
+
+
+\section{Postulates of Quantum Mechanics}
+\begin{center}
+
+  \begin{tabular}{l l l l}
+    \hline
+    \textbf{Postulates}           & \textbf{Spin 1/2}           & \textbf{Hydrogen atom}                                           & \textbf{Harmonic Oscillator}                     \\[10pt]
+    1) State defined by a ket     & $\ket{+}$, $\ket{-}$        & $\Psi_{nlm}(r,\theta,\phi) = R_{nl}(r)Y^{m}_{l}(\theta, \phi)$   & $\ket{n}, \Phi_{n}(x), \Phi_{n}(p)$              \\[10pt]
+    2) Observables as operators   & $S_z, \vb{S}^2, H$          & $H, \vb{L}^2, L_{z}$                                             & $H, \hat{x}, \hat{p}$                            \\[10pt]
+    3) Measure eigenvalues        & $S_z = \pm \hbar/2$         & $E_n = -\frac{Z^2 R}{n^2}$                                       & $E_n = \hbar \omega ( n + \frac{1}{2})$          \\[10pt]
+                                  &                             & $L^2 = \ell(\ell+1)\hbar, L_z = m\hbar$                          &                                                  \\[10pt]
+    4) Probability (density)      & $\abs{\braket{+ | \Psi}}^2$ & $\abs{\braket{nlm | \Psi}}^2, \abs{\Psi_{nlm}(r,\theta,\phi)}^2$ & $\abs{\braket{n | \Psi}}^2, \abs{\Phi_{n}(x)}^2$ \\[10pt]
+    5) State Reduction            & $\ket{\Psi} \to \ket{+}$    & $\ket{\Psi} \to \ket{nlm}, \ket{\Psi} \to \ket{E_n}$             & $\ket{\Psi} \to \ket{n}$                         \\[10pt]
+    6) Schrodinger time evolution & Larmor precession           & Dipole oscillation                                               & Superposition oscillation                        \\[10pt]
+    \hline
+  \end{tabular}
+
+\end{center}
+
+\section{Operators}
+\subsection{Quantum Mechanical Angular Momentum}
+From $\vb{L} = \vb{r} \cross \vb{p}$ we have
+\begin{center}
+\begin{align*}
+    [L_x, L_y] = i\hbar L_z \\ 
+    [L_y, L_z] = i\hbar L_x \\ 
+    [L_z, L_x] = i\hbar L_y 
+\end{align*}
+\end{center}
+And define 
+$$
+\vb{L}^2 = \vb{L} \cdot \vb{L} = L_x^2 + L_y^2 + L_z^2
+$$
+such that
+\begin{center}
+\begin{align*}
+    [\vb{L}^2, L_y] = 0 \\ 
+    [\vb{L}^2, L_z] = 0 \\ 
+    [\vb{L}^2, L_x] = 0 
+\end{align*}
+\end{center}
+The energy eigenvalue equations become
+\begin{center}
+\begin{align*}
+\vb{L}^2 \ket{\ell m_{\ell}} & =  \ell ( \ell + 1) \hbar^2 \ket{\ell m_{\ell}} \\
+L_z \ket{\ell m_{\ell}} & = m_{\ell} \hbar \ket{\ell m_{\ell}} 
+\end{align*}
+\end{center}
+
+for $\ell = 0, 1, 2, \dots$, and  $m_{\ell} = -\ell, -\ell + 1, \dots, -1, 0, 1, \dots, \ell + 1, \ell$
+
+
+
+
+
+
+
+
+\end{document}
