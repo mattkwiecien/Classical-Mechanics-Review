@@ -5,6 +5,7 @@
 \usepackage{amsmath}
 \usepackage{physics}
 \usepackage{braket}
+\usepackage{siunitx}
 \usepackage{bm}
 \DeclareMathOperator{\Lagr}{\mathcal{L}}
 \DeclareMathOperator{\Ham}{\mathcal{H}}
@@ -66,6 +67,15 @@ Uncertainty principle:
 $$
 [\hat{x},\hat{p}] = i\hbar , \qquad \Delta x \Delta p \geq \frac{\hbar}{2}
 $$
+
+Hydrogen atom quantum numbers (principal, angular momentum, magnetic):
+\begin{center}
+    \begin{align*}
+        n & = 1, 2, 3, \dots \infty \\
+        \ell & = 0, 1, 2, \dots, n - 1 \\
+        m & = -\ell, -\ell + 1, \dots, 0, \dots, \ell -1, \ell
+    \end{align*}
+\end{center}
 
 
 \section{Schrodinger's Equation}
@@ -242,7 +252,147 @@ $$
 \ket{m} \doteq \Phi_m(\phi) = \frac{1}{\sqrt{2\pi}}e^{im\phi}
 $$
 
+where $m$ is defined as the \textbf{magnetic quantum number}
+
+Note that $m$ is degenerate due to spherical symmetry.
+
 \subsection{Motion of a particle on a Sphere}
+The polar solutions are best found in the context that involve both polar and azimuthal angles, so we find solutions of the form 
+$$Y(\theta,\phi) = \Theta(\theta) \Phi_m(\phi)$$
+also known as the \textbf{spherical harmonics}, which represent the motion of a particle on a sphere.
+
+Using clever substitution, the differential equation takes the form of the \textbf{associated Legendre Equation},
+$$
+\left( (1-z^2) \frac{d^2}{dz^2} - 2z \frac{d}{dz} + A - \frac{m^2}{(1-z^2)} \right) P(z) = 0
+$$
+which has solutions of the \textbf{associated Legendre Functions}
+$$
+P^m_\ell(z) = P^{-m}_\ell(z) = \frac{1}{2^\ell \ell!}(1-z^2)^{m/2}\frac{d^{m+\ell}}{dz^{m+\ell}} (z^2 - 1)^\ell
+$$
+
+where $\ell$ is the \textbf{angular momentum quantum number}. Note that $\ell$ is degenerate due to the symmetry of the Coulomb potential.
+
+Note that the constraint on $m\leq \ell$ comes from this equation - the $m$th derivative vanishes if it this condition is not met.
+
+Finally the polar solution is 
+
+$$
+\Theta(\theta)^{m}_{\ell} = (-1)^m \frac{(2\ell + 1)}{2} \frac{(l-m)!}{(l+m)!} P^{m}_{\ell}(\cos\theta), \quad m \geq 0
+$$
+
+with negative states defined by 
+$$
+\Theta(\theta)^{-m}_{\ell} = (-1)^m \Theta^m_\ell(\theta), \quad m \geq 0
+$$
+
+Combining the azimuthal and polar equations we get the energy eigenstates of the particle on the sphere, aka, the spherical harmonics
+$$
+\ket{\ell m} \doteq Y^m_\ell(\theta,\phi) = (-1)^{(m+\abs{m})/2} \sqrt{\frac{(2\ell+1)}{4\pi} \frac{(\ell - \abs{m})!}{(\ell + \abs{m})!}} P^m_\ell(\cos\theta)e^{im\phi}
+$$
+
+and for negative $m$
+$$
+Y^{-m}_\ell(\theta,\phi) = (-1)^{m} Y^{m^*}_\ell(\theta,\phi)
+$$
+
+And eigenvalues are given by
+
+\begin{center}
+    \begin{align*}
+        H_{sphere}Y^{m}_\ell(\theta,\phi) & =  \frac{\hbar^2}{2I} \ell(\ell + 1) Y^{m_}_\ell(\theta,\phi)\\
+         \vb{L}^2 Y^{m}_\ell(\theta,\phi) &=  \ell(\ell+1) \hbar^2 Y^{m}_\ell(\theta,\phi)
+        \\
+         L_z Y^{m}_\ell(\theta,\phi) &=  m\hbar Y^{m}_\ell(\theta,\phi)
+    \end{align*}
+\end{center}
+
+Note that
+
+\begin{itemize}
+    \item $H, \vb{L}^2, L_z$ all commute with each other, the spherical harmonics are simultaneous eigenstates for all of the operators.
+    \item The Hamiltonian is proportional to the orbital angular momentum operator, so they share eigenstates.
+    \item The spherical harmonics contain the azimuthal eigenstates, so they also share eigenstates.
+\end{itemize} 
+
+\subsection{Radial Equation}
+Returning to the original differential equation which was separated by variables, define the following constants
+
+$$
+a = \frac{4\pi \epsilon_0 \hbar^2}{\mu Z e^2} \qquad -\gamma^2 =  \frac{E}{\left(\frac{\hbar^2}{2\mu a^2}\right)}
+$$
+
+which yields the differential equation 
+$$
+\frac{d^2R}{d\rho^2} + \frac{2}{\rho} \frac{dR}{d\rho} + \left[ -\gamma^2 + \frac{2}{\rho} - \frac{\ell(\ell + 1)}{\rho^2} \right] R = 0
+$$
+
+Using recurrence relations, you can deduce the following
+
+\begin{itemize}
+    \item $n = j_max + \ell + 1$ where $n$ is the \textbf{principal quantum number}
+    \item $n = 1,2,3,\dots,\infty$
+    \item The allowed energies of the hydrogenic atom are 
+    $$
+    E_{n} = -\frac{1}{2n^2} \left( \frac{Ze^2}{4\pi\epsilon_0} \right)^2 \frac{\mu}{\hbar^2}
+    $$
+\end{itemize}
+
+The hydrogen energy levels can be simplified by 
+$$
+\alpha = \frac{e^2}{4\pi \epsilon_0 \hbar c} \text{ (fine structure constant)} = \frac{1}{137}
+$$
+$$
+m_e c^2 = \SI{511}{\kilo \eV}
+$$
+to become 
+$$
+E_n = -\frac{1}{n^2} \SI{13.6}{\eV}
+$$
+
+Can also define the Bohr radius
+$$
+a_0 = \frac{4\pi \epsilon_0 \hbar^2}{m_e e^2} = \SI{0.0529}{\nano \m} = \SI{0.529}{\angstrom}
+$$
+Which gives energy levels
+$$
+E_n = -\frac{1}{2n^2}\left( \frac{1}{4\pi\epsilon_0} \frac{e^2}{a_0} \right)
+$$
+
+Now, the radial wave function can be written as
+$$
+R_{n\ell}(r) = \left( \frac{Zr}{a_0}\right)^{\ell} e^{-Zr / n a_0}H\left( \frac{Zr}{a_0}\right)
+$$
+
+and using the \textbf{Laguerre polynomials}, and \textbf{associated Laguerre polynomials}
+
+$$
+L_q(x) = e^x \frac{d^q}{dx^q} (x^q e^{-x}), \qquad L^{p}_q(x) = \frac{d^p}{dx^p}L_q(x)
+$$
+
+we can write the radial equation as
+
+$$
+R_{n\ell} = - \left\{ \left( \frac{2Z}{na_0} \right)^3 \frac{(n-\ell + 1)!}{2n [(n+\ell)!]^3} \right\}^{1/2} e^{-Zr/na_0} \left( \frac{2Zr}{na_0} \right)^\ell L_{n+\ell}^{2\ell+1}(2Zr/na_0)
+$$
+
+And the full hydrogen wave function becomes
+$$
+\ket{n\ell m} \doteq \Psi_{n\ell m}(r,\theta,\phi) = R_{n\ell}(r)Y^m_\ell(\theta,\phi)
+$$
+
+With energy eigenvalue equations
+\begin{center}
+    \begin{align*}
+        H\Psi_{n\ell m}(r,\theta,\phi) & = -\frac{\SI{13.6}{\eV}}{n^2}\Psi_{n\ell m}(r,\theta,\phi) \\
+        \vb{L}^2 \Psi_{n\ell m}(r,\theta,\phi) & = \ell(\ell+1)\hbar^2 \Psi_{n\ell m}(r,\theta,\phi) \\
+        L_z\Psi_{n\ell m}(r,\theta,\phi) & = m \hbar\Psi_{n\ell m}(r,\theta,\phi)
+    \end{align*}
+\end{center}
+
+Important to remember that \textbf{both the radial and angular parts of the wave function are normalized independently}.  This means that the radial part integrated from 0 to infinity is 1, and the angular part integrated across all angles is 1.
+
+
+\section{Harmonic Oscillator}
 
 
 \section{Postulates of Quantum Mechanics}
