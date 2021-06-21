@@ -24,6 +24,7 @@
 \begin{document}
 
 \maketitle
+
 \section{Potentials}
 
 \textbf{Curl-less fields} (or irrotational). 
@@ -56,6 +57,11 @@ $$
 $$
 
 \section{Electrostatics}
+
+Start with \textbf{Coulomb's Law} which gives you the force on a test charge $Q$ due to a single point charge $q$ at rest a distance $\scriptr$ away
+$$
+\vb{F} = \ck \frac{qQ}{\scriptr^2} \vh{\boldscriptr}
+$$
 \subsection{Calculating the E Field}
 For a single point charge at the origin
 $$
@@ -66,7 +72,13 @@ $$
 \vb{E}(\vb{r}) = \ck \int \frac{\rho(\vb{r})}{r^2} \vh{r} d\tau
 $$
 
-However, a lot easier to find the E field exploiting symmetries and Gauss's law:
+In sum, we have the following tools for translating equations from point, line, surface, and volume
+$$
+\sum_{i=1}^n (\,)q_i \sim \int_{line} (\,)\lambda dl \sim \int_{surface} (\,) \sigma da \sim \int_{volume} (\,) \rho d\tau
+$$
+
+\subsection{Gauss's Law}
+Always use Gauss's law if possible to find the E field exploiting symmetries:
 $$
 \oint \vb{E} \cdot d\vb{a} = \frac{1}{\epsilon_0} Q_{enc} = \int_\mathcal{V} \frac{\rho}{\epsilon_0} d\tau
 $$
@@ -260,6 +272,17 @@ are linear dielectrics.
     \item $\epsilon_r$ - \textbf{relative permittivity} or \textbf{dielectric constant}: Relative to the material, and its greater than 1 for all ordinary material.
 \end{itemize}
 
+\subsection{Fundamental quantities}
+The 3 fundamental quantities are the charge density, $\rho$, the electric field, $\vb{E}$, and the potential, $V$, and they are related as follows
+
+\begin{align*}
+    \rho \to \vb{E} & :\quad \vb{E} = \ck \int \frac{\hat{\boldscriptr}}{\scriptr^2} \rho d\tau \\
+    \vb{E} \to \rho & :\quad \nabla \cdot \vb{E} = \frac{\rho}{ \epsilon_0}; \, \nabla \times \vb{E} = \vb{0} \\
+    \vb{E} \to V & :\quad V = -\int \vb{E} \cdot d\vb{l} \\
+    V \to \vb{E} & :\quad \vb{E} = -\nabla V \\
+    V \to \rho & :\quad \nabla^2 V = -\frac{\rho}{\epsilon_0}\\
+    \rho \to V & :\quad V = \ck \int \frac{\rho}{\scriptr} d\tau
+\end{align*}
 
 \section{Magnetostatics}
 
@@ -274,14 +297,116 @@ $$
 $$
 for a line charge $\lambda$.  It is physically the charge per unit time.
 
+The magnetic force can then be calculated in terms of the current
+$$
+\vb{F}_{mag} = \int I (d\vb{l} \times \vb{B})
+$$
 
+\begin{itemize}
+    \item The hardest part here is generally finding the direction of the field/current using right hand rule
+    \item Remember magnetic fields do no work, it's actually done by the battery
+    \item Think about pushing a block up a ramp, the slope isn't doing the work, you are.
+\end{itemize}
 
+The surface current density is given by $K$ and represents current per unit width, and the volume current density is given by $J$ and represents the current per unit area:
 
+$$
+\vb{K} = \frac{d\vb{I}}{dl_\perp} = \sigma \vb{v} \qquad \vb{J} = \frac{d\vb{I}}{da_\perp} = \rho \vb{v}
+$$
 
+In sum, we have the following tools for translating equations from point, line, surface, and volume
+$$
+\sum_{i=1}^n (\,)q_i \vb{v}_i \sim \int_{line} (\,)\vb{I}dl \sim \int_{surface} (\,) \vb{K}da \sim \int_{volume} (\,) \vb{J}d\tau
+$$
 
+\subsection{Continuity equation derivation}
 
+Re-arranging the definition of $\vb{J}$ and integrating we get
+$$
+I = \int_\mathcal{S} J da_\perp = \int_\mathcal{S} \vb{J} \cdot \vb{a}_\perp
+$$
+And Gauss's law states that the charge per unit time leaving the volume $\mathcal{V}$ is
+$$
+\oint_\mathcal{S} \vb{J} \cdot d\vb{a} = \int_\mathcal{V} (\nabla \cdot \vb{J}) d\tau
+$$
+Now, since charge is conserved, whatever flows out through the surface must come at the expense of what remains inside:
+$$
+\int_\mathcal{V} (\nabla \cdot \vb{J}) d\tau = -\frac{d}{dt} \int_\mathcal{V} \rho d\tau = - \int_\mathcal{V} \left( \frac{\partial \rho}{\partial t} \right) d\tau
+$$
+and since this applies for all volumes, we can set the inside of the integral equal and get the \textbf{continuity equation}
+$$
+\nabla \cdot \vb{J} = - \frac{\partial \rho}{\partial t}
+$$
 
+\subsection{Biot-Savart Law}
+For a steady current, where
+$$
+\frac{\partial \vb{J}}{\partial t} = 0
+$$
+The magnetic field is given by
+$$
+\vb{B}(\vb{r}) = \frac{\mu_0}{4\pi} \int \frac{\vb{I} \times \vh{\boldscriptr}}{\scriptr^2} dl' = \frac{\mu_0}{4\pi} I \int \frac{d\vb{l'}\times \vh{\boldscriptr}}{\scriptr^2}
+$$
+where $\mu_0$ is the \textbf{permeability of free space}.
 
+\subsection{Divergence and Curl}
+From the above, for the case of a general volume current density, we can find that
+$$
+\nabla \cdot \vb{B} = 0
+$$
+and 
+$$
+\nabla \times \vb{B} = \mu_0 \vb{J}
+$$
+And applying stokes theorem, we get the equation for an \textbf{Amperian Loop}
+$$
+\oint \vb{B} \cdot d\vb{l} = \mu_0 I_{enc}
+$$
+which can give us the enclosed current.
+\subsection{Magnetic Vector Potential}
+Instead of a scalar potential like electrostatics, magnetostatics has a vector potential
+$$
+\vb{B} = \nabla \times \vb{A}
+$$
+With properties
+$$
+\nabla \cdot \vb{A} = 0 \qquad \nabla^2 \vb{A} = -\mu_0 \vb{J}
+$$
+and is explicitly calculated as 
+$$
+\vb{A}(\vb{r}) = \frac{\mu_0}{4\pi} \int \frac{\vb{J}(\vb{r'})}{\scriptr} d\tau
+$$
+
+\subsection{Boundary Conditions}
+Griffiths Page 250
+
+\subsection{Multipole Expansion}
+Similar to electrostatics, we can expand the magnetic field as a power series of $1/r$. 
+
+One important difference is that the dipole moment in electrostatics dominates ofnly if the electric monopole term is zero, but \textbf{the magnetic monopole term is always zero}.
+
+Thus
+$$
+\vb{A}_{dip} (\vb{r}) = \frac{\mu_0}{4\pi} \frac{\vb{m}\times\vh{r}}{r^2}
+$$
+where $\vb{m}m$ is the magnetic dipole moment
+$$
+\vb{m} = I \int d\vb{a} = I\vb{a}
+$$
+
+\subsection{Fundamental Quantities}
+The 3 fundamental quantities are the current density, $\vb{J}$, the magnetic field $\vb{B}$, and the magnetic potential, $\vb{A}$, and they are related as follows.
+
+\begin{align*}
+    \vb{J} \to \vb{B} & :\quad \vb{B} = \frac{\mu_0}{4\pi} \int \frac{\vb{J} \times \hat{\boldscriptr}}{\scriptr^2} d\tau \\
+    \vb{B} \to \vb{J} & :\quad \nabla \times \vb{B} = \mu_0 \vb{J}; \, \nabla \cdot \vb{B} = \vb{0} \\
+    \vb{B} \to \vb{A} & : \quad \text{This does not exist} \\
+    \vb{A} \to \vb{B} & :\quad \vb{B} = \nabla \times \vb{A}; \, \nabla \cdot \vb{A} = 0 \\
+    \vb{A} \to \vb{J} & :\quad \nabla^2 \vb{A} = -\mu_0 \vb{J}\\
+    \vb{J} \to \vb{A} & :\quad \vb{A} = \frac{\mu_0}{4\pi} \int \frac{\vb{J}}{\scriptr} d\tau
+\end{align*}
+
+\section{Magnetic Fields in Matter}
 
 
 
