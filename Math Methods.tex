@@ -9,6 +9,12 @@
 \DeclareMathOperator{\Ham}{\mathcal{H}}
 \newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
 \newcommand{\vh}[1]{\hat{\vb{#1}}}
+\usepackage{calligra}
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\scriptr}{\mathcalligra{r}\,}
+\newcommand{\boldscriptr}{\pmb{\mathcalligra{r}}\,}
 
 \title{Math Methods}
 \author{Matthew Kwiecien}
@@ -410,6 +416,220 @@ $$
 $$
 (1+x)^\alpha = 1 + \frac{\alpha(\alpha - 1) \dots (\alpha - n + 1)}{n!}x^{n}
 $$
+
+\section{Vector Analysis}
+\subsection{Separation vector}
+A vector that points from a source point $\vb{r}'$ to a field point $\vb{r}$ is given by 
+$$
+\boldscriptr = \vb{r} - \vb{r'}, \qquad \hat{\boldscriptr} = \frac{\boldscriptr}{\scriptr} = \frac{\vb{r} - \vb{r'}}{\abs{\vb{r} - \vb{r'}}}
+$$
+
+\subsection{Differential Calculus (Div, Grad, Curl)}
+The del operator is given by 
+$$
+\nabla = \vh{x} \frac{\partial}{\partial x} + \vh{y} \frac{\partial}{\partial y} + \vh{z} \frac{\partial}{\partial z}
+$$
+
+
+The \textbf{gradient} is a \textbf{vector quantity}, and defined as 
+$$
+\nabla T = \frac{\partial T}{\partial x} \vh{x} + \frac{\partial T}{\partial y} \vh{y} + \frac{\partial T}{\partial z} \vh{z}
+$$
+
+The gradient points in the direction of maximum increase of the function T, and the magnitude of the gradient gives the slope along this maximal direction.
+
+The \textbf{divergence} is a \textbf{scalar quantity}, defined as
+
+$$
+\nabla \cdot \vb{v} = \frac{\partial v_x}{\partial x} + \frac{\partial v_y}{\partial y} + \frac{\partial v_z}{\partial z}
+$$
+
+The divergence is a measure of how the vector $v$ spreads out from the point in question.
+
+The \textbf{curl} is a \textbf{vector quantity}, and defined as 
+$$
+\nabla \cross \vb{v}  = \left| \begin{matrix} 
+    \vh{x} & \vh{y} & \vh{z} \\
+    \partial / \partial x & \partial / \partial y & \partial / \partial z \\
+    v_x & v_y & v_z 
+  \end{matrix} \right|
+$$
+
+The curl is a measure of how much the vector $\vb{v}$ swirls around the point in question. E.g. a whirlpool would have large curl.
+
+The \textbf{Laplacian} of a scalar is a scalar, but you can also have the laplacian of a vector.  It is defined as 
+
+$$
+\nabla^2 T = \frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2} + \frac{\partial^2 T}{\partial z^2}, \qquad \text{for a scalar }T
+$$
+and 
+$$
+\nabla^2 \vb{v} = (\nabla^2 v_x)\vh{x} + (\nabla^2 v_y) \vh{y} + (\nabla^2 v_z) \vh{z}, \qquad \text{for a vector }\vb{v}
+$$
+
+Useful properties:
+\begin{itemize}
+    \item The curl of a gradient is always 0 
+    \item The divergence of a curl is always 0
+\end{itemize}
+
+
+\subsection{Integral Calculus}
+
+A \textbf{line integral} is an expression of the form
+
+$$
+\int_{a}^{b} \vb{v} \cdot d\vb{l}, \qquad d\vb{l} = dx \vh{x} + dy \vh{y} + dz \vh{z}
+$$
+
+where $\vb{v}$ is a vector function, $d\vb{l}$ is the infinitesimal displacement vector, and the integral is carried out along a path $\mathcal{P}$ from $a \to b$. 
+
+\begin{itemize}
+    \item You want to parameterize the path so it's in terms of once variable, and have a single integral.
+    \item If you have constraints, use them to make the integral in terms of 1 variable.
+    \item Don't forget to use chain rule on the constraints in the displacement vector (e.g. $z=x^2 \to dz = 2x dx$
+\end{itemize}
+
+A \textbf{surface integral} is an expression of the form
+
+$$
+\int_{\mathcal{S}} \vb{v} \cdot d\vb{a}
+$$
+
+where $d\vb{a}$ is the infinitesimal patch of area perpendicular to the surface.  This usually represents the mass per unit time passing through the surface, aka the flux.  Should be 2 integrals.
+
+A \textbf{volume integral} is an expression of the form
+
+$$
+\int_{\mathcal{V}} T d\tau, \qquad d\tau = dxdydz \quad \text{(in cartesian)}
+$$
+
+where $T$ is a scalar and $d\tau$ is the infinitesimal volume element.  This would be used to calculate the total mass given a density $T$.
+
+For a volume integral over a \textbf{vector} function
+
+$$
+\int \vb{v} d\tau = \vh{x} \int v_x d\tau + \vh{y} \int v_y d\tau + \vh{z} v_z d\tau
+$$
+
+Hint: to parameterize a plane, if a plane has intercepts $a, b, c$ then the equation of the plane is
+$$
+\frac{x}{a} + \frac{y}{b} + \frac{z}{c} = 1
+$$
+
+\subsection{Fundamental Theorems}
+
+The \textbf{fundamental theorem of calculus} says
+$$
+\int_a^b \left( \frac{df}{dx} \right) dx = \int_a^b F(x) dx = f(b) - f(a)
+$$
+So it tells you how to integrate $F(x)$: you think of a function $f(x)$ who's derivative is equal to $F$.  The basic format is that \textbf{the integral of a derivative over some region is given by the value of the functions at the end points.}
+
+The \textbf{fundamental theorem of gradients} says 
+$$
+\int_a^b (\nabla T) \cdot d\vb{l} = T(\vb{b}) - T(\vb{a})
+$$
+
+Which tells you that the line integral of a gradient (or integral of a derivative) is given by the value of the function at the boundaries.
+\begin{itemize}
+    \item Gradients have a special property that \textbf{their line integrals are path independent.}
+    \item $\int_a^b(\nabla T)\cdot d\vb{l}$ is independent of path taken from $\vb{a}$ to $\vb{b}$
+    \item $\oint (\nabla T)\cdot d\vb{l} = 0$ since the beginning and end points are identical, so $T(\vb{b}) - T(\vb{a}) = 0$
+\end{itemize}
+
+
+The \textbf{fundamental theorem for Divergences} says
+$$
+\int_{\mathcal{V}} (\nabla \cdot \vb{v} )\, d\tau = \oint_{\mathcal{S}} \vb{v} \cdot d\vb{a}
+$$
+
+Also known as \textbf{Gauss's Theorem, Green's theorem, and divergence theorem}.  The integral of the divergence over a volume is equal to the value of the function on the surface that bounds the volume.
+
+Basically
+$$
+\int (\text{faucets within the volume}) = \oint (\text{flow out through the surface})
+$$
+
+The \textbf{Fundamental Theorem for Curls} says
+
+$$
+\int_{\mathcal{S}}(\nabla \times \vb{v}) \cdot d\vb{a} = \oint_{\mathcal{P}} \vb{v} \cdot d\vb{l}
+$$
+
+Also known as \textbf{Stokes' Theorem}.  The integral of a curl over a patch of surface (aka the flux of the curl) is equal to the value of the function on the perimeter of the path.
+
+\begin{itemize}
+    \item The left hand side is also called the circulation
+    \item $\int(\nabla \times \vb{v}) \cdot d\vb{a}$ depends only on the boundary line, not on the surface used
+    \item $\int(\nabla \times \vb{v}) \cdot d\vb{a} = 0$  for any closed surface, since the boundary line shrinks like the mouth of a balloon.  So the circulation vanishes.
+    \item Direction is extremely important for the loop.  Use the right hand rule, and prefer to \textbf{never use minus signs in $d\vb{l}$}.  Just reverse the bounds of integration if necessary.
+\end{itemize}
+
+\section{Integration By Parts}
+
+You can easily derive this starting with chain rule.  Start with
+\begin{align*}
+(fg)' & = fg' + f'g    
+\end{align*}
+and integrate both sides
+
+\begin{align*}
+\int (fg)' & = \int fg' + \int f'g   \\
+fg \eval_a^b & = \int fg' + \int f'g \\
+\int fg'& = -\int f'g + fg \eval_a^b
+\end{align*}
+
+Now, for vector calculus, the above goes
+
+$$
+\nabla \cdot (f\vb{A}) = f(\nabla \cdot \vb{A}) + \vb{A} \cdot (\nabla f)
+$$
+
+Integrate both sides and invoke divergence theorem
+$$
+\int \nabla \cdot (f\vb{A}) d\tau = \int f(\nabla \cdot \vb{A}) d\tau +  \int \vb{A} \cdot (\nabla f) d\tau = \oint f\vb{A} \cdot d\vb{a}
+$$
+and re-arrange
+$$
+\int_{\mathcal{V}} f(\nabla \cdot \vb{A}) d\tau = - \int_{\mathcal{V}} \vb{A} \cdot (\nabla f) d\tau + \oint_{\mathcal{S}} f\vb{A} \cdot d\vb{a}
+$$
+
+\section{Dirac Delta Function}
+The actual function is given by 
+$$
+\delta(x) = 
+\begin{cases}
+0, &\quad x \neq 0 \\
+\infty, &\quad x = 0
+\end{cases}
+$$
+and in 3 dimensions
+$$
+\delta^3(\vb{r}) = \delta(x) \delta(y) \delta(z)
+$$
+thus, it is zero everywhere except at 0 where it blows up (or (0,0,0) for 3 dimensions).
+
+\begin{align*}
+\int_{-\infty}^{\infty} \delta(x) dx & = 1 \\
+\int_{\text{all space}} \delta^3{(\vb{r})} d\tau & = 1
+\end{align*}
+
+The entire point of this function is that
+\begin{align*}
+\int_{-\infty}^{\infty} f(x) \delta(x-a) dx & = f(a) \\ \int_{\text{all space}} f(\vb{r})\delta^3{(\vb{r-\vb{a}})} d\tau &  = f(\vb{a})
+\end{align*}
+
+Some special rules about the delta function
+$$
+\delta(kx) = \frac{1}{\abs{k}} \delta(x)
+$$
+$$
+\nabla \cdot \left( \frac{\vh{r}}{r^2} \right) = 4\pi\delta^3(\vb{r})
+$$
+
+Dirac delta functions are great for "write an expression for the volume charge density" from point charges.  Just setup the delta fn to be centered at the point charges.
+
+
 
 \section{TODO}
 \begin{itemize}

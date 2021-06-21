@@ -1,0 +1,294 @@
+\documentclass{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{braket}
+\usepackage{siunitx}
+\usepackage{bm}
+\DeclareMathOperator{\Lagr}{\mathcal{L}}
+\DeclareMathOperator{\Ham}{\mathcal{H}}
+\usepackage{calligra}
+
+\DeclareMathAlphabet{\mathcalligra}{T1}{calligra}{m}{n}
+\DeclareFontShape{T1}{calligra}{m}{n}{<->s*[2.2]callig15}{}
+\newcommand{\scriptr}{\mathcalligra{r}\,}
+\newcommand{\boldscriptr}{\pmb{\mathcalligra{r}}\,}
+\newcommand{\uvec}[1]{\boldsymbol{\hat{\textbf{#1}}}}
+\newcommand{\vh}[1]{\hat{\vb{#1}}}
+\newcommand{\ck}{\frac{1}{4\pi\epsilon_0}}
+
+\title{Electricity and Magnetism Review}
+\author{Matthew Kwiecien}
+\begin{document}
+
+\maketitle
+\section{Potentials}
+
+\textbf{Curl-less fields} (or irrotational). 
+$$
+\nabla \times \vb{F} = 0 \iff \vb{F} = -\nabla V
+$$
+All are equivalent:
+\begin{itemize}
+    \item $\nabla \times \vb{F} = \vb{0}$
+    \item $\int_a^b F \cdot d\vb{l}$ is independent of path for any given endpoints
+    \item $\oint \vb{F} \cdot d\vb{l} = 0$ for any closed loop
+    \item $\vb{F}$ is the gradient of some scalar function $\vb{F} = -\nabla V$
+\end{itemize}
+
+\textbf{Divergence-less fields} (or solenoidal). 
+$$
+\nabla \cdot \vb{F} = 0 \iff \vb{F} = \nabla \times \vb{A}
+$$
+for a vector potential $\vb{A}$.  All are equivalent:
+\begin{itemize}
+    \item $\nabla \cdot \vb{F} = 0$ everywhere
+    \item $\int \vb{F} \cdot d\vb{a}$ is independent of surface for any given boundary line
+    \item $\oint \vb{F} \cdot d\vb{a} = 0$ for any closed surface
+    \item $\vb{F} $ is the curl of some vector function $\vb{F} = \nabla \times \vb{A}$
+\end{itemize}
+
+Regardless, any vector field can be written as
+$$
+\vb{F} = -\nabla V + \nabla \times \vb{A}
+$$
+
+\section{Electrostatics}
+\subsection{Calculating the E Field}
+For a single point charge at the origin
+$$
+\vb{E}(\vb{r}) = \ck \frac{q}{r^2} \vh{r}
+$$
+And for a continuous charge distribution
+$$
+\vb{E}(\vb{r}) = \ck \int \frac{\rho(\vb{r})}{r^2} \vh{r} d\tau
+$$
+
+However, a lot easier to find the E field exploiting symmetries and Gauss's law:
+$$
+\oint \vb{E} \cdot d\vb{a} = \frac{1}{\epsilon_0} Q_{enc} = \int_\mathcal{V} \frac{\rho}{\epsilon_0} d\tau
+$$
+
+There are only 3 symmetries to exploit
+\begin{itemize}
+    \item \textbf{Spherical} - use a concentric sphere
+    \item \textbf{Cylindrical} - use a coaxial cylinder
+    \item \textbf{Plane} - Use a pillbox that straddles the surface
+\end{itemize}
+
+Then you just crank the lever:
+\begin{enumerate}
+    \item Calculate $Q_{enc}$
+    \item Use symmetry to pull $\abs{E}$ out of the integral 
+    \item Always remember that the Gaussian surface is not defined in terms of constant variables, they vary, e.g. use $r$ not $R$ as the radius.
+\end{enumerate}
+
+\subsection{Calculating the Potential}
+Once you have the E field, it's easy 
+
+$$
+V(\vb{r}) = - \int_{\infty}^{r} \vb{E} \cdot d\vb{l}, \qquad \vb{E} = - \nabla V
+$$
+
+The lower bound is your reference point, which is infinity (so $V(\infty) = 0$), but \textbf{only if you do not have an infinitely long/large charge distribution}.  If you do have an infinity long wire, say, you need to set $V(a) = 0$ instead of infinity.
+
+Using differential form of Gauss's law, you can get \textbf{Poisson's equation}
+
+$$
+\nabla^2 V = -\frac{\rho}{\epsilon_0}
+$$
+
+and if there's no charge it reduces to Laplace's equation
+
+$$
+\nabla^2 V = 0
+$$
+
+The electrostatic \textbf{boundary conditions} are
+
+\begin{enumerate}
+    \item $\vb{E}^{||}_{above} = \vb{E}^{||}_{below}$
+    \item $\vb{E}^{\perp}_{above} - \vb{E}^{\perp}_{below} = \frac{\sigma}{\epsilon_0}\vh{n}$
+    \item $V_{above} = V_{below}$
+    \item $\frac{\partial V_{above}}{\partial n} - \frac{\partial V_{below}}{\partial n}  = -\frac{1}{\epsilon_0}\sigma $
+\end{enumerate}
+
+\subsection{Work (or Energy)}
+
+For point charges
+$$
+W = \frac{1}{2} \sum_{i=1}^n q_iV(\vb{r}_i)
+$$
+And for a charge density
+$$
+W = \frac{1}{2} \int \rho V d\tau
+$$
+and utilizing Gauss' law we can derive
+$$
+W = \frac{\epsilon_0}{2} \int E^2 d\tau
+$$
+
+\subsection{Conductors and Capacitors}
+Important facts about conductors
+\begin{itemize}
+    \item E = 0 inside a conductor
+    \item $\rho = 0$ inside a conductor
+    \item Any net charge is on the surface
+    \item A conductor is an equipotential
+    \item E is perpendicular to the surface outside the conductor
+\end{itemize}
+
+Capacitance is purely geometric and describes the proportionality of Q to V for two conductors.
+
+In sum, you can get the electric field using Coulomb's law, or using the equation for a potential, or using Poisson's equation.
+
+\section{Potentials}
+
+\subsection{Laplace's Equation}
+Electrostatics is basically the study of Laplace's Equation
+$$
+\nabla^2 V = 0
+$$
+
+\begin{itemize}
+    \item It basically is the straightest line between two points, no local minima or maxima.
+    \item To solve Laplace's equation, start with boundary conditions (as given by  problem), and use separation of variables.
+    \item In cartesian coordinates, the solutions are fourier series.
+    \item In spherical coordinates, the solutions are the Legendre Polynomials.
+\end{itemize}
+
+\subsection{Method of Images}
+The uniqueness theorems of Poisson's equation guarantees that if you can find any potential that satisfies the boundary conditions, THAT is the only potential which can describe the system.
+
+\begin{itemize}
+\item The image has to have opposite charge
+\item You cannot put image charges in the region where you are calculating $V$
+\end{itemize}
+
+\subsection{Multipole expansion}
+
+This expresses an electric potential from very far away in terms of $\frac{1}{r}$
+
+\begin{align*}
+V(\vb{r}) & = \ck \sum_{n=0}^{\infty} \frac{1}{r^{(n+1)}} \int (r')^n P_n (\cos\alpha)\rho(\vb{r}') d\tau'\\
+& = \ck \left[ \frac{1}{r} \int \rho(\vb{r}')d\tau' + \frac{1}{r^2} \int r' \cos \alpha \rho(\vb{r}') d\tau' + \frac{1}{r^3}\int(r')^2 \left(\frac{3}{2} \cos^2 \alpha - \frac{1}{2} \right) \rho(\vb{r}') d\tau' + \dots \right]
+\end{align*}
+
+Where the terms above go monopole, dipole, quadrupole, etc.
+
+\begin{itemize}
+    \item Usually the monopole term dominates very far from the origin.
+    \item If the total charge is zero, the dipole term will dominate.
+\end{itemize}
+
+The dipole moment is given by 
+$$
+\vb{p} = \int \vb{r}' \rho(\vb{r}') d\tau'
+$$
+and the potential becomes
+$$
+V_{dip}(\vb{r}) = \ck \frac{\vb{p} \cdot \vh{r}}{r^2}
+$$
+and
+$$
+\vb{p} = \sum_{i=1}^n q_i \vb{r}'_i = q\vb{d}
+$$
+
+\textbf{Physical vs perfect dipole}: A perfect dipole has potential given exactly by $V_{dip}$ and requires $\vb{d} \then 0$ but requires infinite $q$.  A physical dipole is one you can actually construct.
+
+\section{Electric Fields in Matter}
+This is all about insulators or \textbf{dielectrics}.  The main difference here is that while conductors can completely cancel out the E field, dielectrics only can \textit{kinda}.
+
+\subsection{Polarization}
+For a dielectric, you get a bunch of little dipoles pointing in the direction of the field, thus you get the \textbf{polarization}
+$$
+P = \textit{dipole moment per unit volume}
+$$
+
+\textbf{Bound Charges} are charges that are essentially accumulated on the surface (or in the volume if it's not constant inside).  Think of dielectrics as two overlaid spheres of charges (+, -), and bound charges are the outer left over charges when those spheres slightly shift in an E Field.
+
+For this setup use Gauss's law and, you can see that the charge density of bound charges is
+$$
+\rho_b = -\nabla \cdot \vb{P}
+$$
+
+\subsection{The Electric Displacement}
+We have two things that contribute to the electric field now \textbf{bound charges} and \textbf{everything else}.  The charge density can be written as
+
+$$
+\rho = \rho_b + \rho_f
+$$
+Combining with Gauss's Law, we get 
+$$
+\epsilon_0 \nabla \cdot \vb{E} = \rho = \rho_b + \rho_f = - \nabla \cdot \vb{P} + \rho_f
+$$
+Re-arranging 
+$$
+\nabla \cdot (\epsilon_0 \vb{E} + \vb{P}) = \rho_f
+$$
+and let the \textbf{electric displacement} be defined as $\vb{D} = \epsilon_0 \vb{E} + \vb{P}$
+
+Then,
+$$
+\nabla \cdot \vb{D} = \rho_f \qquad \oint \vb{D} \cdot d\vb{a} = Q_f_{enc}
+$$
+
+The electrostatic \textbf{boundary conditions} in terms of $\vb{D}$ are
+
+\begin{enumerate}
+    \item $D^{\perp}_{above} - D^{\perp}_{below} = \sigma_f$
+    \item $\vb{D}^{||}_{above} - \vb{D}^{||}_{below} = \vb{P}^{||}_{above} - \vb{P}^{||}_{below}$
+\end{enumerate}
+
+That is basically all of the effects of polarization.
+
+\subsection{Linear Dielectrics}
+Materials that follow 
+$$
+\vb{P} = \epsilon_0 \chi_e \vb{E}
+$$
+are linear dielectrics.
+
+\begin{itemize}
+    \item $\chi_e$ - \textbf{Electric Susceptibility}: Depends on microscopic structure of substance
+    \item $\epsilon = \epsilon_0(1+\chi_e)$
+    \item $\epsilon$ - \textbf{permittivity} of a material
+    \item If $\chi_e = 0$, you're in ``free space'' and that's how get you $\epsilon_0$
+    \item $\epsilon_r = 1 + \chi_e = \frac{\epsilon}{\epsilon_0}$
+    \item $\epsilon_r$ - \textbf{relative permittivity} or \textbf{dielectric constant}: Relative to the material, and its greater than 1 for all ordinary material.
+\end{itemize}
+
+
+\section{Magnetostatics}
+
+Force is given by
+$$
+F_{mag} = Q[\vb{E} + (\vb{v} \times \vb{B})]
+$$
+
+Current is a vector, and is given by
+$$
+\vb{I} = \lambda \vb{v}
+$$
+for a line charge $\lambda$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
