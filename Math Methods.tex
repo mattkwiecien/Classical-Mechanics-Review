@@ -57,6 +57,31 @@ Then
 \end{align*}
 
 \section{Residue Calculus}
+\subsection{Laurent Series}
+Laurent series is just a Taylor series but in the complex plane.  It is given by
+
+$$
+f(z) = \sum_{k=0}^\infty a_k(z-z_0)^k + \sum_{j=1}^\infty b_j(z-z_0)^{-j}
+$$
+\begin{itemize}
+    \item The coefficient $b_1$ is called the \textbf{residue} of $f(z)$
+    \item If $b_j$ is nonzero, then $z_0$ is an essential pole
+    \item If $b_n \neq 0$ and $b$'s $>b_n = 0$, then $z_0$ is a pole of order $n$.
+\end{itemize}
+You can therefore just expand things and if there's a $b_1/(z-z_0)$ term, you have it's residue already.
+
+You can also find the residue of a simple pole is calculated by 
+$$
+R = \lim_{z\to z_0} (z-z_0) f(z) = \sum_{k=0}^{\infty} a_k(z-z_0)^{k+1} + b_1
+$$
+
+\begin{enumerate}
+    \item If the limit leads to 0, then the function is analytic and there are no essential singularities
+    \item If the limit leads to $\infty$, then $z_0$ was a higher order pole
+    \item If it's non-zero and finite, it's indeed simple. 
+\end{enumerate}
+
+\subsection{Residue Theorem}
 The value of a contour integral is equal to $2\pi i$ times the sum of it's poles:
 $$
 \oint f(z) = 2\pi i\sum \text{Res}(f(z), z_n)
@@ -76,17 +101,129 @@ $$
 \oint f(z) = \frac{1}{2} 2\pi i\sum \text{Res}(f(z), z_n)
 $$
 
+\subsection{Computing Definite Integrals using Residue Theorem}
+
+If you have a function of the form
+$$
+\int_0^{2\pi} F(\cos\theta,\sin\theta)d\theta
+$$
+You can just use the unit circle.
+
+Using the following substitutions derived from Euler's theorem
+$$
+\cos\theta = \frac{z+z^{-1}}{2} \quad \sin\theta = \frac{z-z^{-1}}{2i} \quad d\theta = \frac{dz}{iz}
+$$
+You can rewrite the integral as 
+$$
+\oint_{C} F\left(\frac{z+z^{-1}}{2}, \frac{z-z^{-1}}{2i}\right) \frac{dz}{iz}
+$$
+And crank the lever.  Just remember \textbf{you must only consider poles within the unit circle ($\abs{r} \leq 1$}
+
+\subsection{Improper Integrals}
+If you have an integral that appears to diverge in the real numbers, you can use the Cauchy Principal Value to evaluate it in the complex plane.
+
+If
+\begin{enumerate}
+    \item $f(x) = p(x) / q(x)$ is a rational function
+    \item $q, p$ have real coefficients and no common factors
+    \item Degree of $q$ is 2 greater than degree of $p$
+    \item $q(z)$ has no real zeros but at least 1 zero above the real axis
+\end{enumerate}
+
+Then, you can use a semi-circle of radius $R$ in the complex plane, so $z = Re^{i\theta}$ and
+
+$$
+\int_{-\infty}^{\infty} f(x) dx = 2\pi i \sum_{j=1}^{n} b_{ij} - \lim_{r\to\infty} \int_{C_R} f(z) dz
+$$
+and if $f(x)$ is even
+$$
+\int_{0}^{\infty} f(x) dx = \pi i \sum_{j=1}^{n} b_{ij} - \frac{1}{2}\lim_{r\to\infty} \int_{C_R} f(z) dz
+$$
+
+And the conditions above make it easy to make the integral on the RHS to go to 0 as $R\to\infty$
+
+\subsection{Fourier Integrals}
+If you have an integral
+$$
+\int_{-\infty}^{\infty} f(x) \sin ax dx, \quad \int_{-\infty}^{\infty} f(x) \cos ax dx
+$$
+replace $f(x)$ with $f(z)$ and
+\begin{enumerate}
+    \item f(z) has to be rational ($f = p/q$)
+    \item $p, q$ have real coefficients and no common factors
+    \item Degree of $q$ $>$ degree of $p$
+    \item $q$ has no real zeros but at least 1 zero above the real axis
+\end{enumerate}
+Then you can substitute $\sin$ or $\cos$ with $e^{iaz}$ and you get
+
+$$
+\oint_{C} f(z) e^{iaz}dz = \int_{-R}^{R} f(z)e^{iaz} dz + \int_{C_R} f(z) e^{iaz} dz
+$$
+
+Now, let $R\to\infty$, and the LHS you get using Residue Theorem, and the right term on the RHS is zero by \textbf{Jordan's Lemma}. 
+
+Lastly, to solve for the original value, you need to \textbf{take the real part} if you were dealing with $\cos$, and \textbf{take the imaginary part} if you were dealing with $\sin$.
+
+\subsection{Branch Cuts}
+
+Functions that are multi-valued, such as natural log, need to be restricted to a specific domain in the complex plane.
+
+If this happens, you need to do the following
+
+\begin{enumerate}
+    \item Write fn being integrated in terms of z
+    \item Set up contour using a branch cut to make the function single-valued
+    \item Set up the integrals and apply residue theorem
+\end{enumerate}
+
+You generally don't want a branch cut along the real axis, nor do you want one going through the poles (then you cant use residue theorem).
+
+Example - 2 ways
+$$
+\int_{0}^{\infty} \frac{1}{1+x^3} dx
+$$
+
+First way you can do this is to use a \textbf{slice contour}.  
+\begin{enumerate}
+    \item Find the first pole you care about ($z = e^{i\pi/3}$)
+    \item Break your integral in the complex plane into 3 segments, 1 on the real axis, 1 arc, 1 ray at $\theta = \frac{2\pi}{3}$
+    \item Show the arc goes to 0 as $R \to \infty$
+    \item Write the integral for the ray in terms of $z = re^{2i\pi/3}$ and you can get the \textbf{original integral} times some number
+    $$ \int_{R}^{0} \frac{e^{2i\pi/3}}{1+r^3e^{2i\pi}} dr = - e^{2i\pi/3} \int_{0}^{R} \frac{1}{1+r^3} dr $$
+    \item Now, put it all together:
+    $$
+    \oint f(z) = \int_{0}^{\infty} \frac{1}{1+x^3} dx + (-e^{2i\pi/3})\int_{0}^{\infty} \frac{1}{1+x^3} dx = (1-e^{2i\pi/3}) \int_{0}^{\infty} \frac{1}{1+x^3} dx 
+    $$
+    \item Then just find the residues of $f(z)$ as normal, re-arrange, and solve for the integral:
+    $$
+    \frac{2\pi i \sum \text{Res}}{(1-e^{2i\pi/3})} = \int_{0}^{\infty} \frac{1}{1+x^3} dx
+    $$
+\end{enumerate}
+
+The second way is to use the \textbf{Keyhole or Pacman Contour}
+
+\begin{enumerate}
+    \item Find ALL poles in 1 branch ($z = e^{i\pi/3}, e^{i\pi}, e^{5i\pi/3}$)
+    \item Break your integral into 4 parts, 2 circles ($R$ and $r$), and 2 lines along the real axis with $\theta=0, 2\pi$
+    \item Consider $\ln{z} = \ln{r} + \ln{e^{i\theta}} = \ln{r} + i\theta$ in the numerator of the integrand.
+    \item Now, show the circles go to 0 as $R, r$ grow and shrink respectively
+    \item Then you end up with 
+    $$
+    \oint \frac{\ln{z}}{1+z^3} = \int_{0}^{\infty} \frac{\ln{r}}{1+z^3} dz + \int_{\infty}^{0} \frac{\ln{r} + 2\pi i }{1+z^3} dz = \int_{0}^{\infty} \frac{\ln{r}}{1+z^3} dz - \int_{0}^{\infty} \frac{\ln{r} + 2\pi i }{1+z^3} = - 2\pi i \int_{0}^{\infty} \frac{1 }{1+z^3} 
+    $$
+    \item Where the last term on the right is your \textbf{original integral}
+    \item Now, solve for the residues, re-arrange, and you get the value of your integral:
+    $$
+    \frac{2\pi i \sum \text{Res}}{-2\pi i} = \int_{0}^{\infty} \frac{1}{1+x^3} dx
+    $$
+\end{enumerate}
+
+\subsection{Notes on residues}
 Some useful things to remember about Residues:
 \begin{itemize}
 	\item Contours follow the right hand rule (hand swings inward towards the area in the contour.)
-	\item For integrals only involving $\theta$, just use the unit circle 
-	      $$
-	      z = e^{i\theta}, \quad dz = izd\theta, \quad \cos\theta = \frac{z + \frac{1}{z}}{2}, \quad \sin\theta = \frac{z - \frac{1}{z}}{2}
-	      $$
-	\item "Domain of convergence" basically where there are no poles.
-	\item For functions with only imaginary roots, use a semi-circle in the complex plane, with $z = Re^{i\theta}$
-	\item If there's no complex numbers in your integral, you can substitute $e^{iz}$ for sine or cosine, and take the real/imaginary part of your answer.
-	\item When you choose a contour and a branch, you MUST stay within that branch.  Meaning, if you are integrating from $0$ to $2\pi$, you can't use negative angles.  
+	\item ``Domain of convergence'' basically where there are no poles.
+	\item When you choose a contour and a branch, you MUST stay within that branch.  Meaning, if you are integrating from $\alpha$ to $\alpha + 2\pi$, you can't use negative angles.  
 	\item When using a branch cut (like the pacman contour), generally, break it up into
 	      $$
 	      \oint f(z) = \int_{\Psi_1} f(z) + \int_{C_R} f(z) + \int_{\Psi_{2}} f(z) + \int_{C_r} f(z)
@@ -335,7 +472,10 @@ Basically if you can reduce the distribution to either a success or a failure on
 
 The formula can be thought of as the possible orderings times the probability of one specific ordering of success and failure
 
-
+Any polynomial of the form $$ (a+b)^m $$ can be expanded using Binomial Theorem as 
+$$
+(a+b)^m = \sum_{k=0}^{m} a^{(m-k)} b^k \binom{m}{k}
+$$
 
 \subsection{Mean and Standard Deviation}
 Mean or average value, 
